@@ -9,10 +9,26 @@ body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
   background:
-    radial-gradient(circle at top left, #1b2a4e, transparent 60%),
+    radial-gradient(circle at top left, #1b2a4e, transparent 55%),
     radial-gradient(circle at bottom right, #0b1020, #0b1020);
   color: #f9fafb;
   min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ===== Background Sprinkles (Stars) ===== */
+.background-sprinkles {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.background-sprinkles span {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.6;
 }
 
 /* ===== Layout ===== */
@@ -20,23 +36,32 @@ body {
   max-width: 1120px;
   margin: 0 auto;
   padding: 0 32px;
+  position: relative;
+  z-index: 1;
 }
 
 .section {
-  padding: 96px 0;
+  padding: 120px 0;
 }
 
 /* ===== Top Nav ===== */
 .top-nav {
   position: absolute;
-  top: 24px;
-  right: 32px;
+  top: 28px;
+  right: 36px;
+  z-index: 2;
 }
 
-.top-nav a {
-  color: #cbd5e1;
-  text-decoration: none;
+.signin-btn {
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 14px;
   font-weight: 500;
+  color: #e5e7eb;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(6px);
 }
 
 /* ===== Typography ===== */
@@ -57,7 +82,6 @@ p {
   font-size: 15px;
   line-height: 1.6;
   color: #cbd5e1;
-  text-align: center;
 }
 
 /* ===== Soft Glass Surface ===== */
@@ -65,20 +89,44 @@ p {
   background: rgba(255, 255, 255, 0.18);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border-radius: 22px;
+  border-radius: 26px;
   border: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 44px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+  padding: 64px 56px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.22);
 }
 
 /* ===== Buttons ===== */
 .btn-primary {
   background: linear-gradient(135deg, #5eead4, #818cf8);
   color: #020617;
-  padding: 14px 30px;
+  padding: 14px 34px;
   border-radius: 999px;
   text-decoration: none;
   font-weight: 600;
+}
+
+/* ===== Hero Meta ===== */
+.hero-meta {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 40px;
+}
+
+.hero-meta div {
+  text-align: center;
+}
+
+.hero-meta span {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.hero-meta small {
+  display: block;
+  font-size: 13px;
+  color: #cbd5e1;
+  margin-top: 6px;
 }
 
 /* ===== Footer ===== */
