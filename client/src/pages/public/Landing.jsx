@@ -6,73 +6,88 @@ const Landing = () => {
       {/* HERO */}
       <section className="section">
         <div className="container">
-          <h1 style={{ maxWidth: "600px" }}>
-            Track campus issues.
+          <h1 style={{ maxWidth: "640px" }}>
+            Campus infrastructure,
             <br />
-            See them resolved.
+            tracked to resolution.
           </h1>
 
-          <p style={{ maxWidth: "520px", marginTop: "16px" }}>
-            A transparent issue resolution platform for campuses and institutions.
+          <p style={{ maxWidth: "560px", marginTop: "18px" }}>
+            ResolveX is a structured issue resolution system designed for academic
+            institutions. Every issue is recorded, monitored, and resolved with
+            accountability.
           </p>
 
-          <div style={{ marginTop: "32px" }}>
+          <div style={{ marginTop: "36px" }}>
             <Link to="/register" className="btn-primary">
-              Get Started
+              Access Platform
             </Link>
             <Link to="/login" className="btn-secondary">
-              Login
+              Sign In
             </Link>
           </div>
         </div>
       </section>
 
-      {/* VALUE PROPS */}
+      {/* VALUE BLOCKS */}
       <section className="section">
         <div
           className="container"
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-            gap: "24px",
+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+            gap: "28px",
           }}
         >
           <div className="card">
-            <h2>Transparent Tracking</h2>
-            <p>Status, timelines, and remarks visible end-to-end.</p>
+            <h2>End-to-End Visibility</h2>
+            <p>
+              Issue status, ownership, and timelines are visible at every stage
+              of the resolution lifecycle.
+            </p>
           </div>
 
           <div className="card">
-            <h2>Clear Accountability</h2>
-            <p>Every issue moves through a defined resolution workflow.</p>
+            <h2>Defined Accountability</h2>
+            <p>
+              Issues move through a controlled workflow with clear assignment and
+              responsibility.
+            </p>
           </div>
 
           <div className="card">
-            <h2>Operational Insight</h2>
-            <p>Management sees trends, delays, and priorities clearly.</p>
+            <h2>Operational Oversight</h2>
+            <p>
+              Management gains insight into trends, delays, and recurring
+              infrastructure concerns.
+            </p>
           </div>
         </div>
       </section>
 
-      {/* CTA STRIP */}
-      <section
-        className="section"
-        style={{ backgroundColor: "#1E3A8A", color: "white" }}
-      >
+      {/* AUTHORITY STRIP */}
+      <section className="section accent-strip">
         <div className="container">
-          <h2 style={{ color: "white", maxWidth: "520px" }}>
-            Built for real campuses, not complaint boxes
+          <h2 style={{ color: "#ffffff", maxWidth: "600px" }}>
+            Designed for accountability, not complaints
           </h2>
 
-          <div style={{ marginTop: "24px" }}>
+          <p style={{ color: "#c7d2fe", maxWidth: "560px", marginTop: "14px" }}>
+            ResolveX replaces informal reporting with a transparent,
+            institution-grade resolution process.
+          </p>
+
+          <div style={{ marginTop: "28px" }}>
             <Link to="/register" className="btn-primary">
-              Access ResolveX
+              Get Started
             </Link>
           </div>
         </div>
       </section>
 
-      <footer>© ResolveX</footer>
+      <footer>
+        © {new Date().getFullYear()} ResolveX · Campus Issue Resolution Platform
+      </footer>
     </div>
   );
 };
