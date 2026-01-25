@@ -4,23 +4,24 @@ const Landing = () => {
   return (
     <div>
       {/* HERO */}
-      <section className="section bg-blue">
+      <section className="section">
         <div className="container">
-          <div className="clay">
+          <div className="glass" style={{ maxWidth: "720px" }}>
             <h1>
               Campus issues,
               <br />
-              resolved with clarity.
+              resolved transparently.
             </h1>
 
-            <p style={{ maxWidth: "520px", marginTop: "16px" }}>
-              ResolveX is an institution-grade platform for tracking and resolving
-              campus infrastructure issues — transparently and accountably.
+            <p style={{ maxWidth: "560px", marginTop: "16px" }}>
+              ResolveX is a centralized issue resolution platform built for
+              academic institutions. Track issues, monitor progress, and ensure
+              accountability from report to closure.
             </p>
 
             <div style={{ marginTop: "32px" }}>
               <Link to="/register" className="btn-primary">
-                Enter ResolveX
+                Access ResolveX
               </Link>
               <Link to="/login" className="btn-secondary">
                 Sign in
@@ -30,55 +31,55 @@ const Landing = () => {
         </div>
       </section>
 
-      {/* FEATURES */}
-      <section className="section bg-pink">
+      {/* VALUE GRID */}
+      <section className="section">
         <div
           className="container"
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-            gap: "32px",
+            gap: "28px",
           }}
         >
-          <div className="clay">
+          <div className="glass">
             <h2>Transparent Lifecycle</h2>
             <p>
-              Every issue progresses through a clearly defined resolution flow
-              with timestamps and status visibility.
+              Every issue moves through a clearly defined resolution workflow
+              with visible status and timestamps.
             </p>
           </div>
 
-          <div className="clay">
-            <h2>Clear Accountability</h2>
+          <div className="glass">
+            <h2>Defined Accountability</h2>
             <p>
-              Ownership, assignment, and responsibility are explicitly tracked —
-              no ambiguity.
+              Ownership, assignment, and responsibility are explicitly recorded
+              at every stage.
             </p>
           </div>
 
-          <div className="clay">
-            <h2>Actionable Oversight</h2>
+          <div className="glass">
+            <h2>Operational Insight</h2>
             <p>
-              Management gains insight into patterns, delays, and recurring
-              infrastructure problems.
+              Management gains real-time visibility into trends, delays, and
+              recurring infrastructure challenges.
             </p>
           </div>
         </div>
       </section>
 
       {/* STATEMENT */}
-      <section className="section bg-green">
+      <section className="section">
         <div className="container">
-          <div className="clay">
-            <h2>Not a complaint box.</h2>
-            <p style={{ maxWidth: "560px", marginTop: "12px" }}>
+          <div className="glass" style={{ maxWidth: "720px" }}>
+            <h2>Designed for institutions, not complaint boxes</h2>
+            <p style={{ marginTop: "14px" }}>
               ResolveX replaces informal reporting with a structured,
-              auditable, and accountable system designed for real campuses.
+              auditable, and accountable issue resolution system.
             </p>
 
             <div style={{ marginTop: "28px" }}>
               <Link to="/register" className="btn-primary">
-                Access the Platform
+                Get Started
               </Link>
             </div>
           </div>
@@ -86,7 +87,7 @@ const Landing = () => {
       </section>
 
       <footer>
-        © {new Date().getFullYear()} ResolveX · Institutional Issue Resolution System
+        © {new Date().getFullYear()} ResolveX · Campus Issue Resolution Platform
       </footer>
     </div>
   );
