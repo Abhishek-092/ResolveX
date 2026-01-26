@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import logoPrimary from "../../assets/images/logo-primary.svg";
+
 
 const Landing = () => {
   return (
@@ -22,9 +24,13 @@ const Landing = () => {
       {/* Top Bar */}
       <div className="top-bar">
         <div className="logo">
-          <div className="logo-mark">R</div>
-          <div className="logo-text">ResolveX</div>
+          <img
+            src={logoPrimary}
+            alt="ResolveX"
+            style={{ height: "36px" }}
+          />
         </div>
+
 
         <Link to="/login" className="signin-btn">
           Sign in
