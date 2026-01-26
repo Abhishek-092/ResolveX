@@ -82,7 +82,7 @@ const Login = () => {
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Your password"
+                  placeholder="Your password*S"
                 />
               </div>
             </div>
@@ -97,7 +97,7 @@ const Login = () => {
               type="submit"
               className="btn-primary"
               disabled={loading}
-              style={{ width: "100%" }}
+              style={{ width: "100%" , marginBottom: "16px"}}
             >
               {loading ? "Signing in..." : "Sign in"}
             </button>
