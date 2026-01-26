@@ -16,7 +16,7 @@ body {
   overflow-x: hidden;
 }
 
-/* ===== Background Sprinkles (Stars) ===== */
+/* ===== Background Sprinkles ===== */
 .background-sprinkles {
   position: fixed;
   inset: 0;
@@ -44,14 +44,44 @@ body {
   padding: 120px 0;
 }
 
-/* ===== Top Nav ===== */
-.top-nav {
+/* ===== Top Bar ===== */
+.top-bar {
   position: absolute;
-  top: 28px;
+  top: 26px;
+  left: 36px;
   right: 36px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   z-index: 2;
 }
 
+/* ===== Logo ===== */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-mark {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #5eead4, #818cf8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #020617;
+  font-weight: 700;
+}
+
+.logo-text {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* ===== Sign In Button ===== */
 .signin-btn {
   padding: 8px 16px;
   border-radius: 999px;
@@ -84,7 +114,7 @@ p {
   color: #cbd5e1;
 }
 
-/* ===== Soft Glass Surface ===== */
+/* ===== Glass Surface ===== */
 .glass {
   background: rgba(255, 255, 255, 0.18);
   backdrop-filter: blur(8px);
@@ -107,13 +137,10 @@ p {
 
 /* ===== Hero Meta ===== */
 .hero-meta {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  margin-top: 40px;
-}
-
-.hero-meta div {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-top: 44px;
   text-align: center;
 }
 

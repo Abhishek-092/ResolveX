@@ -5,7 +5,7 @@ const Landing = () => {
     <div>
       {/* Background Sprinkles */}
       <div className="background-sprinkles">
-        {Array.from({ length: 45 }).map((_, i) => (
+        {Array.from({ length: 48 }).map((_, i) => (
           <span
             key={i}
             style={{
@@ -19,8 +19,13 @@ const Landing = () => {
         ))}
       </div>
 
-      {/* Top Right Sign In */}
-      <div className="top-nav">
+      {/* Top Bar */}
+      <div className="top-bar">
+        <div className="logo">
+          <div className="logo-mark">R</div>
+          <div className="logo-text">ResolveX</div>
+        </div>
+
         <Link to="/login" className="signin-btn">
           Sign in
         </Link>
@@ -28,36 +33,40 @@ const Landing = () => {
 
       {/* HERO */}
       <section className="section">
-        <div className="container" style={{ display: "flex", justifyContent: "center" }}>
-          <div className="glass" style={{ maxWidth: "760px", width: "100%" }}>
+        <div
+          className="container"
+          style={{ display: "flex", justifyContent: "center" }}
+        >
+          <div className="glass" style={{ maxWidth: "800px", width: "100%" }}>
             <h1>
-              Campus issues,
+              A clearer way to report,
               <br />
-              resolved with clarity.
+              track, and resolve campus issues
             </h1>
 
             <p style={{ marginTop: "22px", textAlign: "center" }}>
-              A structured, transparent system for tracking and resolving
-              campus infrastructure issues.
+              ResolveX provides a structured system where infrastructure issues
+              are reported once, tracked transparently, and resolved with clear
+              accountability.
             </p>
 
             {/* Hero Meta */}
             <div className="hero-meta">
               <div>
-                <span>5-Stage</span>
-                <small>Resolution lifecycle</small>
+                <span>5 stages</span>
+                <small>Defined issue lifecycle</small>
               </div>
               <div>
-                <span>Public</span>
-                <small>Issue visibility</small>
+                <span>Public / Private</span>
+                <small>Controlled visibility</small>
               </div>
               <div>
-                <span>Real-time</span>
-                <small>Status tracking</small>
+                <span>Time-bound</span>
+                <small>Resolution tracking</small>
               </div>
             </div>
 
-            <div style={{ marginTop: "48px", textAlign: "center" }}>
+            <div style={{ marginTop: "52px", textAlign: "center" }}>
               <Link to="/register" className="btn-primary">
                 Access ResolveX
               </Link>
@@ -77,26 +86,26 @@ const Landing = () => {
           }}
         >
           <div className="glass">
-            <h2>Transparent lifecycle</h2>
+            <h2>Transparent resolution</h2>
             <p>
-              Issue status, ownership, and progress remain visible from
-              report to closure.
+              Issue status, remarks, and ownership remain visible from the moment
+              an issue is reported until it is closed.
             </p>
           </div>
 
           <div className="glass">
-            <h2>Clear accountability</h2>
+            <h2>Reduced duplication</h2>
             <p>
-              Each issue is assigned, tracked, and resolved through
-              defined responsibility stages.
+              Similar issues are consolidated, ensuring faster resolution and
+              avoiding repeated reporting.
             </p>
           </div>
 
           <div className="glass">
-            <h2>Operational insight</h2>
+            <h2>Administrative insight</h2>
             <p>
-              Management gains clarity on trends, delays, and recurring
-              infrastructure problems.
+              Management gains a clear view of recurring issues, response times,
+              and infrastructure health.
             </p>
           </div>
         </div>
@@ -104,12 +113,15 @@ const Landing = () => {
 
       {/* STATEMENT */}
       <section className="section">
-        <div className="container" style={{ display: "flex", justifyContent: "center" }}>
-          <div className="glass" style={{ maxWidth: "760px" }}>
-            <h2>Designed for institutions</h2>
+        <div
+          className="container"
+          style={{ display: "flex", justifyContent: "center" }}
+        >
+          <div className="glass" style={{ maxWidth: "800px" }}>
+            <h2>Built for real campuses</h2>
             <p style={{ marginTop: "14px" }}>
-              ResolveX replaces informal reporting with a structured,
-              auditable, and accountable resolution workflow.
+              ResolveX is designed to support accountability, transparency, and
+              data-driven decision making across campus infrastructure.
             </p>
           </div>
         </div>
