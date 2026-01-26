@@ -1,35 +1,73 @@
 import { Link } from "react-router-dom";
+import { LogOut } from "lucide-react";
+import logoPrimary from "../../assets/images/logo-primary.svg";
 
 const Navbar = () => {
   return (
-    <nav
+    <header
       style={{
-        padding: "16px 24px",
-        borderBottom: "1px solid #e5e7eb",
-        backgroundColor: "#ffffff",
+        position: "sticky",
+        top: 0,
+        zIndex: 50,
+        backdropFilter: "blur(12px)",
+        background: "rgba(15, 23, 42, 0.6)",
+        borderBottom: "1px solid rgba(255,255,255,0.08)",
       }}
     >
       <div
+        className="container"
         style={{
-          maxWidth: "1200px",
-          margin: "0 auto",
           display: "flex",
-          justifyContent: "space-between",
           alignItems: "center",
+          justifyContent: "space-between",
+          height: "64px",
         }}
       >
-        <strong style={{ color: "#1f3a5f", fontSize: "18px" }}>
-          ResolveX
-        </strong>
+        {/* Logo */}
+        <Link
+          to="/student/dashboard"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "10px",
+            textDecoration: "none",
+            color: "#f8fafc",
+          }}
+        >
+          <img
+            src={logoPrimary}
+            alt="ResolveX"
+            style={{ height: "36px" }}
+          />
+          <span
+            style={{
+              fontSize: "18px",
+              fontWeight: 600,
+              letterSpacing: "0.3px",
+            }}
+          >
+            ResolveX
+          </span>
+        </Link>
 
-        <div>
-          <Link to="/login" style={{ marginRight: "16px" }}>
-            Login
-          </Link>
-          <Link to="/register">Get Started</Link>
-        </div>
+        {/* Right Actions */}
+        <button
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "8px",
+            background: "transparent",
+            border: "none",
+            color: "#cbd5f5",
+            cursor: "pointer",
+            fontSize: "14px",
+          }}
+        >
+          <LogOut size={18} />
+          Logout
+        </button>
       </div>
-    </nav>
+    </header>
   );
 };
 
