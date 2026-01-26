@@ -1,7 +1,16 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { User, Mail, Lock, MapPin } from "lucide-react";
+import { User, Mail, Lock, Building2, DoorOpen } from "lucide-react";
 import logoPrimary from "../../assets/images/logo-primary.svg";
+
+const hostelOptions = [
+  "Hostel A",
+  "Hostel B",
+  "Hostel C",
+  "Hostel D",
+  "Block 1",
+  "Block 2",
+];
 
 const Register = () => {
   const [form, setForm] = useState({
@@ -9,10 +18,8 @@ const Register = () => {
     email: "",
     password: "",
     confirmPassword: "",
-    college: "",
-    campus: "",
-    block: "",
-    room: "",
+    hostel: "",
+    roomNo: "",
   });
 
   const [error, setError] = useState("");
@@ -28,7 +35,6 @@ const Register = () => {
     e.preventDefault();
     setError("");
 
-    // All fields required
     for (const key in form) {
       if (!form[key]) {
         setError("All fields are required");
@@ -36,7 +42,6 @@ const Register = () => {
       }
     }
 
-    // Password rules
     if (!isPasswordValid(form.password)) {
       setError(
         "Password must be at least 8 characters and include uppercase, lowercase, and a number"
@@ -44,7 +49,6 @@ const Register = () => {
       return;
     }
 
-    // Password match
     if (form.password !== form.confirmPassword) {
       setError("Passwords do not match");
       return;
@@ -65,7 +69,7 @@ const Register = () => {
           minHeight: "100vh",
         }}
       >
-        <div className="glass" style={{ maxWidth: "560px", width: "100%" }}>
+        <div className="glass" style={{ maxWidth: "520px", width: "100%" }}>
           {/* Logo */}
           <div style={{ textAlign: "center", marginBottom: "24px" }}>
             <img src={logoPrimary} alt="ResolveX" style={{ height: "48px" }} />
@@ -73,7 +77,7 @@ const Register = () => {
 
           <h2 style={{ textAlign: "center" }}>Student Registration</h2>
           <p style={{ textAlign: "center", marginTop: "6px" }}>
-            Create an account to report and track campus issues.
+            Create an account to report and track hostel issues.
           </p>
 
           <form onSubmit={handleSubmit} style={{ marginTop: "28px" }}>
@@ -106,58 +110,36 @@ const Register = () => {
               </div>
             </div>
 
-            {/* College */}
+            {/* Hostel / Block (Dropdown + Search) */}
             <div style={{ marginBottom: "16px" }}>
-              <label>College / Institute Name</label>
+              <label>Hostel Name / Block</label>
               <div className="input-box">
-                <MapPin size={18} />
+                <Building2 size={18} />
                 <input
-                  name="college"
-                  value={form.college}
+                  list="hostel-options"
+                  name="hostel"
+                  value={form.hostel}
                   onChange={handleChange}
-                  placeholder="Your college or institute"
+                  placeholder="Select or search hostel"
                 />
+                <datalist id="hostel-options">
+                  {hostelOptions.map((hostel) => (
+                    <option key={hostel} value={hostel} />
+                  ))}
+                </datalist>
               </div>
             </div>
 
-            {/* Campus */}
+            {/* Room No */}
             <div style={{ marginBottom: "16px" }}>
-              <label>Campus</label>
+              <label>Room No.</label>
               <div className="input-box">
-                <MapPin size={18} />
+                <DoorOpen size={18} />
                 <input
-                  name="campus"
-                  value={form.campus}
+                  name="roomNo"
+                  value={form.roomNo}
                   onChange={handleChange}
-                  placeholder="Campus name"
-                />
-              </div>
-            </div>
-
-            {/* Block */}
-            <div style={{ marginBottom: "16px" }}>
-              <label>Block / Area</label>
-              <div className="input-box">
-                <MapPin size={18} />
-                <input
-                  name="block"
-                  value={form.block}
-                  onChange={handleChange}
-                  placeholder="Block or area"
-                />
-              </div>
-            </div>
-
-            {/* Room */}
-            <div style={{ marginBottom: "16px" }}>
-              <label>Room / Location ID</label>
-              <div className="input-box">
-                <MapPin size={18} />
-                <input
-                  name="room"
-                  value={form.room}
-                  onChange={handleChange}
-                  placeholder="Room or location identifier"
+                  placeholder="e.g. 204, A-12"
                 />
               </div>
             </div>
@@ -194,7 +176,13 @@ const Register = () => {
 
             {/* Error */}
             {error && (
-              <p style={{ color: "#fca5a5", fontSize: "14px", marginBottom: "14px" }}>
+              <p
+                style={{
+                  color: "#fca5a5",
+                  fontSize: "14px",
+                  marginBottom: "14px",
+                }}
+              >
                 {error}
               </p>
             )}
