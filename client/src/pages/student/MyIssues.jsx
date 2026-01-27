@@ -34,6 +34,26 @@ const issues = [
     comments: 3,
     date: "12 Sep 2025",
   },
+  {
+    id: 2,
+    category: "Electrical",
+    description: "Tube light not working in the corridor.",
+    priority: "Medium",
+    status: "Assigned",
+    visibility: "public",
+    comments: 1,
+    date: "10 Sep 2025",
+  },
+  {
+    id: 3,
+    category: "Internet",
+    description: "WiFi disconnects frequently during night hours.",
+    priority: "Low",
+    status: "Resolved",
+    visibility: "private",
+    comments: 0,
+    date: "05 Sep 2025",
+  },
 ];
 
 const priorityColors = {
@@ -73,20 +93,18 @@ const MyIssues = () => {
               display: "flex",
               alignItems: "center",
               gap: "20px",
-              lineHeight: "1.2",
-              marginBottom: "8px",
+              marginBottom: "10px",
             }}
           >
             <BackButton />
-            <h1 style={{ margin: 0, lineHeight: "1.2" }}>
-              My Issues
-            </h1>
+            <h1 style={{ margin: 0 }}>My Issues</h1>
           </div>
 
           <p style={{ marginBottom: "28px" }}>
             Track the status of issues you have reported.
           </p>
 
+          {/* ISSUES */}
           <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
             {issues.map((issue) => {
               const Icon = iconMap[issue.category];
@@ -97,7 +115,14 @@ const MyIssues = () => {
                   to={`/student/issues/${issue.id}`}
                   style={{ textDecoration: "none" }}
                 >
-                  <div className="glass" style={{ display: "flex", gap: "16px" }}>
+                  <div
+                    className="glass"
+                    style={{
+                      display: "flex",
+                      gap: "16px",
+                      alignItems: "flex-start",
+                    }}
+                  >
                     <Icon
                       size={18}
                       color={categoryColors[issue.category]}
@@ -105,7 +130,7 @@ const MyIssues = () => {
                     />
 
                     <div style={{ flex: 1 }}>
-                      <span
+                      <div
                         style={{
                           fontSize: "16px",
                           fontWeight: 600,
@@ -113,7 +138,7 @@ const MyIssues = () => {
                         }}
                       >
                         {issue.category}
-                      </span>
+                      </div>
 
                       <p style={{ fontSize: "14px", opacity: 0.9 }}>
                         {issue.description}
@@ -135,7 +160,8 @@ const MyIssues = () => {
                           }}
                         >
                           <MessageSquare size={14} />
-                          {issue.comments} comments
+                          {issue.comments} comment
+                          {issue.comments !== 1 ? "s" : ""}
                         </div>
                       )}
                     </div>
@@ -182,8 +208,12 @@ const MyIssues = () => {
                           color: "#cbd5f5",
                         }}
                       >
-                        <Eye size={14} />
-                        Public
+                        {issue.visibility === "public" ? (
+                          <Eye size={14} />
+                        ) : (
+                          <EyeOff size={14} />
+                        )}
+                        {issue.visibility === "public" ? "Public" : "Private"}
                       </span>
                     </div>
                   </div>
