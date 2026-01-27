@@ -51,11 +51,6 @@ const ReportIssue = () => {
     otherLocation: "",
   });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    alert("Issue submitted (mock)");
-  };
-
   return (
     <>
       <Navbar />
@@ -63,17 +58,27 @@ const ReportIssue = () => {
       <section className="section">
         <div className="container" style={{ maxWidth: "720px" }}>
           {/* HEADER */}
-          <h1 style={{ display: "flex", alignItems: "center", margin: 0 }}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "16px",
+              lineHeight: "1.2",
+              marginBottom: "8px",
+            }}
+          >
             <BackButton />
-            Report an Issue
-          </h1>
+            <h1 style={{ margin: 0, lineHeight: "1.2" }}>
+              Report an Issue
+            </h1>
+          </div>
 
-          <p style={{ margin: "12px 0 24px" }}>
+          <p style={{ marginBottom: "24px" }}>
             Provide accurate details to help resolve the issue quickly.
           </p>
 
-          <form onSubmit={handleSubmit}>
-            {/* CATEGORY */}
+          <form>
+            {/* Category */}
             <label>Issue Category</label>
             <div
               style={{
@@ -89,16 +94,13 @@ const ReportIssue = () => {
                   <button
                     key={label}
                     type="button"
-                    onClick={() =>
-                      setForm({ ...form, category: label })
-                    }
+                    onClick={() => setForm({ ...form, category: label })}
                     style={{
                       padding: "14px",
                       borderRadius: "14px",
                       display: "flex",
                       alignItems: "center",
                       gap: "10px",
-                      cursor: "pointer",
                       background: active
                         ? categoryColors[label]
                         : "rgba(255,255,255,0.12)",
@@ -106,6 +108,7 @@ const ReportIssue = () => {
                       border: active
                         ? `2px solid ${categoryColors[label]}`
                         : "1px solid rgba(255,255,255,0.25)",
+                      cursor: "pointer",
                     }}
                   >
                     <Icon size={18} />
@@ -115,7 +118,7 @@ const ReportIssue = () => {
               })}
             </div>
 
-            {/* PRIORITY */}
+            {/* Priority */}
             <label>Priority</label>
             <div style={{ display: "flex", gap: "12px", margin: "10px 0 22px" }}>
               {Object.keys(priorityStyles).map((level) => {
@@ -124,20 +127,18 @@ const ReportIssue = () => {
                   <button
                     key={level}
                     type="button"
-                    onClick={() =>
-                      setForm({ ...form, priority: level })
-                    }
+                    onClick={() => setForm({ ...form, priority: level })}
                     style={{
                       padding: "12px 18px",
                       borderRadius: "14px",
-                      border: "none",
-                      cursor: "pointer",
                       background: active
                         ? priorityStyles[level].bg
                         : "rgba(255,255,255,0.12)",
                       color: active
                         ? priorityStyles[level].text
                         : "#e5e7eb",
+                      border: "none",
+                      cursor: "pointer",
                     }}
                   >
                     {level}
@@ -146,28 +147,28 @@ const ReportIssue = () => {
               })}
             </div>
 
-            {/* EMERGENCY WARNING */}
+            {/* Emergency Warning */}
             {form.priority === "Emergency" && (
               <div
                 style={{
-                  marginBottom: "22px",
                   padding: "14px",
                   borderRadius: "14px",
                   background: "rgba(239,68,68,0.12)",
                   border: "1px solid #ef4444",
                   display: "flex",
                   gap: "10px",
+                  marginBottom: "22px",
                 }}
               >
                 <AlertTriangle size={20} color="#ef4444" />
                 <p style={{ fontSize: "14px", color: "#fecaca" }}>
-                  Select <strong>Emergency</strong> only for real emergencies or
-                  safety hazards. False alerts may lead to disciplinary action.
+                  Select <strong>Emergency</strong> only for real emergencies.
+                  False alerts may lead to disciplinary action.
                 </p>
               </div>
             )}
 
-            {/* DESCRIPTION */}
+            {/* Description */}
             <label>Issue Description</label>
             <textarea
               rows={4}
@@ -178,13 +179,13 @@ const ReportIssue = () => {
               placeholder="Describe the issue clearly..."
               style={{
                 width: "100%",
-                margin: "8px 0 22px",
                 padding: "12px",
                 borderRadius: "12px",
+                margin: "8px 0 22px",
               }}
             />
 
-            {/* IMAGE */}
+            {/* Image */}
             <label>Attach Image (optional)</label>
             <button
               type="button"
@@ -194,11 +195,11 @@ const ReportIssue = () => {
                 borderRadius: "14px",
                 background: "#ffffff",
                 color: "#0f172a",
+                border: "none",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
                 gap: "10px",
-                border: "none",
                 margin: "8px 0 22px",
               }}
             >
@@ -206,85 +207,7 @@ const ReportIssue = () => {
               Upload an image
             </button>
 
-            {/* VISIBILITY */}
-            <label>Visibility</label>
-            <div style={{ display: "flex", gap: "14px", margin: "10px 0 22px" }}>
-              {["public", "private"].map((v) => {
-                const active = form.visibility === v;
-                return (
-                  <button
-                    key={v}
-                    type="button"
-                    onClick={() =>
-                      setForm({ ...form, visibility: v })
-                    }
-                    style={{
-                      padding: "12px 18px",
-                      borderRadius: "14px",
-                      background: active
-                        ? "#22d3ee"
-                        : "rgba(255,255,255,0.12)",
-                      color: active ? "#022c22" : "#e5e7eb",
-                      border: active
-                        ? "2px solid #22d3ee"
-                        : "1px solid rgba(255,255,255,0.25)",
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "8px",
-                    }}
-                  >
-                    {v === "public" ? <Eye size={16} /> : <EyeOff size={16} />}
-                    {v === "public" ? "Public" : "Private"}
-                  </button>
-                );
-              })}
-            </div>
-
-            {/* LOCATION */}
-            <div className="glass" style={{ marginBottom: "28px" }}>
-              <h3>Issue Location</h3>
-
-              <label>
-                <input
-                  type="radio"
-                  checked={form.locationType === "my-room"}
-                  onChange={() =>
-                    setForm({ ...form, locationType: "my-room" })
-                  }
-                />{" "}
-                My Room (Hostel A · Room 204)
-              </label>
-
-              <br />
-
-              <label>
-                <input
-                  type="radio"
-                  checked={form.locationType === "other"}
-                  onChange={() =>
-                    setForm({ ...form, locationType: "other" })
-                  }
-                />{" "}
-                Other Area
-              </label>
-
-              {form.locationType === "other" && (
-                <div className="input-box" style={{ marginTop: "10px" }}>
-                  <MapPin size={18} />
-                  <input
-                    placeholder="Specify room or common area"
-                    value={form.otherLocation}
-                    onChange={(e) =>
-                      setForm({
-                        ...form,
-                        otherLocation: e.target.value,
-                      })
-                    }
-                  />
-                </div>
-              )}
-            </div>
-
+            {/* Submit */}
             <button
               type="submit"
               className="btn-primary"
