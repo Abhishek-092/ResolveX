@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 
-const BackButton = ({ label = "Back" }) => {
+const BackButton = () => {
   const navigate = useNavigate();
 
   return (
@@ -10,17 +10,16 @@ const BackButton = ({ label = "Back" }) => {
       style={{
         display: "flex",
         alignItems: "center",
-        gap: "8px",
+        justifyContent: "center",
         background: "transparent",
         border: "none",
         color: "#cbd5f5",
         cursor: "pointer",
-        fontSize: "14px",
-        marginBottom: "18px",
+        padding: 0,
       }}
+      aria-label="Go back"
     >
-      <ArrowLeft size={16} />
-      {label}
+      <ArrowLeft size={18} />
     </button>
   );
 };
