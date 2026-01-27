@@ -12,7 +12,7 @@ import StudentDashboard from "./pages/student/Dashboard";
 import ReportIssue from "./pages/student/ReportIssue";
 import MyIssues from "./pages/student/MyIssues";
 import IssueDetail from "./pages/student/IssueDetail";
-
+import StudentAnnouncements from "./pages/student/Announcements";
 
 
 const AppRoutes = () => {
@@ -30,6 +30,8 @@ const AppRoutes = () => {
       <Route path="/student/report" element={<ReportIssue />} />
       <Route path="/student/issues" element={<MyIssues />} />
       <Route path="/student/issues/:id" element={<IssueDetail />} />
+      <Route path="/student/announcements" element={<StudentAnnouncements />} />
+
     </Routes>
   );
 };
