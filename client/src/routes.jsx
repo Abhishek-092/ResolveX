@@ -10,7 +10,6 @@ import Register from "./pages/auth/Register";
 // Student
 import StudentDashboard from "./pages/student/Dashboard";
 import ReportIssue from "./pages/student/ReportIssue";
-
 import MyIssues from "./pages/student/MyIssues";
 
 
