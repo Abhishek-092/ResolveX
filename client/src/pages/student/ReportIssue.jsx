@@ -71,13 +71,14 @@ const ReportIssue = () => {
             style={{
               display: "flex",
               alignItems: "center",
-              gap: "20px",
+              gap: "16px",
               marginBottom: "10px",
             }}
           >
-            <BackButton />
-            <h1 style={{ margin: 0 }}>Report an Issue</h1>
-          </div>
+          <BackButton />
+          <h1 style={{ margin: 0 }}>Report an Issue</h1>
+        </div>
+
 
           <p style={{ marginBottom: "24px" }}>
             Provide accurate details to help resolve the issue quickly.
