@@ -51,6 +51,9 @@ const ReportIssue = () => {
     otherLocation: "",
   });
 
+  // Mocked user location (later comes from profile)
+  const userRoom = "Hostel A · Room 204";
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Issue submitted:", form);
@@ -256,7 +259,7 @@ const ReportIssue = () => {
                     setForm({ ...form, locationType: "my-room" })
                   }
                 />{" "}
-                My Room (default)
+                My Room <span style={{ opacity: 0.7 }}>({userRoom})</span>
               </label>
 
               <label style={{ display: "block" }}>
