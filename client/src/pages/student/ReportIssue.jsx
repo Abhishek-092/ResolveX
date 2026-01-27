@@ -9,6 +9,7 @@ import {
   Upload,
   Eye,
   EyeOff,
+  MapPin,
 } from "lucide-react";
 
 import Navbar from "../../components/common/Navbar";
@@ -29,17 +30,19 @@ const ReportIssue = () => {
     description: "",
     visibility: "public",
     image: null,
+    locationType: "my-room",
+    otherLocation: "",
   });
-
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // FRONTEND ONLY (mock)
     alert("Issue reported successfully (mock)");
+  };
+
+  const selectedStyle = {
+    background: "#ffffff",
+    color: "#0f172a",
+    border: "1px solid #5eead4",
   };
 
   return (
@@ -76,15 +79,9 @@ const ReportIssue = () => {
                       setForm({ ...form, category: cat.label })
                     }
                     className="glass"
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "10px",
-                      border:
-                        form.category === cat.label
-                          ? "1px solid #5eead4"
-                          : "1px solid transparent",
-                    }}
+                    style={
+                      form.category === cat.label ? selectedStyle : {}
+                    }
                   >
                     {cat.icon}
                     {cat.label}
@@ -97,9 +94,10 @@ const ReportIssue = () => {
             <div style={{ marginBottom: "20px" }}>
               <label>Priority</label>
               <select
-                name="priority"
                 value={form.priority}
-                onChange={handleChange}
+                onChange={(e) =>
+                  setForm({ ...form, priority: e.target.value })
+                }
                 style={{
                   width: "100%",
                   marginTop: "8px",
@@ -118,10 +116,11 @@ const ReportIssue = () => {
             <div style={{ marginBottom: "20px" }}>
               <label>Issue Description</label>
               <textarea
-                name="description"
                 rows={4}
                 value={form.description}
-                onChange={handleChange}
+                onChange={(e) =>
+                  setForm({ ...form, description: e.target.value })
+                }
                 placeholder="Describe the issue in detail..."
                 style={{
                   width: "100%",
@@ -132,28 +131,34 @@ const ReportIssue = () => {
               />
             </div>
 
-            {/* Image Upload */}
+            {/* Upload Image */}
             <div style={{ marginBottom: "20px" }}>
               <label>Attach Image (optional)</label>
-              <div
-                className="glass"
+              <button
+                type="button"
                 style={{
+                  marginTop: "8px",
+                  width: "100%",
+                  padding: "14px",
+                  borderRadius: "14px",
+                  background: "#ffffff",
+                  color: "#0f172a",
                   display: "flex",
                   alignItems: "center",
+                  justifyContent: "center",
                   gap: "10px",
-                  marginTop: "8px",
+                  border: "none",
                   cursor: "pointer",
                 }}
               >
                 <Upload size={18} />
-                <span>Upload an image</span>
-              </div>
+                Upload an image
+              </button>
             </div>
 
             {/* Visibility */}
-            <div style={{ marginBottom: "28px" }}>
+            <div style={{ marginBottom: "20px" }}>
               <label>Visibility</label>
-
               <div style={{ display: "flex", gap: "14px", marginTop: "10px" }}>
                 <button
                   type="button"
@@ -161,12 +166,9 @@ const ReportIssue = () => {
                   onClick={() =>
                     setForm({ ...form, visibility: "public" })
                   }
-                  style={{
-                    border:
-                      form.visibility === "public"
-                        ? "1px solid #5eead4"
-                        : "1px solid transparent",
-                  }}
+                  style={
+                    form.visibility === "public" ? selectedStyle : {}
+                  }
                 >
                   <Eye size={16} /> Public
                 </button>
@@ -177,27 +179,62 @@ const ReportIssue = () => {
                   onClick={() =>
                     setForm({ ...form, visibility: "private" })
                   }
-                  style={{
-                    border:
-                      form.visibility === "private"
-                        ? "1px solid #5eead4"
-                        : "1px solid transparent",
-                  }}
+                  style={
+                    form.visibility === "private" ? selectedStyle : {}
+                  }
                 >
                   <EyeOff size={16} /> Private
                 </button>
               </div>
             </div>
 
-            {/* Location (Read-only) */}
+            {/* Location */}
             <div className="glass" style={{ marginBottom: "28px" }}>
               <h3>Issue Location</h3>
-              <p style={{ marginTop: "6px" }}>
-                Hostel A · Room 204
-              </p>
-              <p style={{ fontSize: "14px", opacity: 0.75 }}>
-                This is auto-attached to your report.
-              </p>
+
+              <div style={{ marginTop: "12px" }}>
+                <label>
+                  <input
+                    type="radio"
+                    checked={form.locationType === "my-room"}
+                    onChange={() =>
+                      setForm({ ...form, locationType: "my-room" })
+                    }
+                  />{" "}
+                  My Room (Hostel A · Room 204)
+                </label>
+              </div>
+
+              <div style={{ marginTop: "10px" }}>
+                <label>
+                  <input
+                    type="radio"
+                    checked={form.locationType === "other"}
+                    onChange={() =>
+                      setForm({ ...form, locationType: "other" })
+                    }
+                  />{" "}
+                  Other Area
+                </label>
+              </div>
+
+              {form.locationType === "other" && (
+                <div style={{ marginTop: "12px" }}>
+                  <div className="input-box">
+                    <MapPin size={18} />
+                    <input
+                      placeholder="Specify room or common area"
+                      value={form.otherLocation}
+                      onChange={(e) =>
+                        setForm({
+                          ...form,
+                          otherLocation: e.target.value,
+                        })
+                      }
+                    />
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Submit */}
