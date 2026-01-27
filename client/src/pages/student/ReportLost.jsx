@@ -7,59 +7,90 @@ const ReportLost = () => {
       <Navbar />
 
       <section className="section">
-        <div className="container" style={{ maxWidth: "700px" }}>
+        <div className="container" style={{ maxWidth: "720px" }}>
           {/* HEADER */}
           <h1
             style={{
               display: "flex",
               alignItems: "center",
               gap: "12px",
-              marginBottom: "8px",
+              marginBottom: "6px",
             }}
           >
             <BackButton />
             Report Lost Item
           </h1>
 
-          <p style={{ opacity: 0.8, marginBottom: "24px" }}>
-            Report an item you have lost so others can help recover it.
+          <p style={{ opacity: 0.8, marginBottom: "28px" }}>
+            Provide accurate details to help others identify and recover your
+            lost item.
           </p>
 
-          {/* FORM */}
-          <div className="glass" style={{ padding: "20px" }}>
-            <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-              <input
-                type="text"
-                placeholder="Item name (e.g. Wallet, ID Card)"
-                required
-              />
+          {/* FORM CARD */}
+          <div className="glass" style={{ padding: "24px" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "18px" }}>
+              
+              {/* ITEM NAME */}
+              <div>
+                <label className="label">Item Name</label>
+                <input
+                  type="text"
+                  placeholder="e.g. Wallet, ID Card, Earphones"
+                  required
+                />
+              </div>
 
-              <textarea
-                rows="4"
-                placeholder="Describe the item and any identifying details"
-                required
-              />
+              {/* DESCRIPTION */}
+              <div>
+                <label className="label">Description</label>
+                <textarea
+                  rows="4"
+                  placeholder="Color, brand, identifying marks, contents, etc."
+                  required
+                />
+              </div>
 
-              <input
-                type="text"
-                placeholder="Last seen location (e.g. Hostel A, Room 204)"
-                required
-              />
+              {/* LOCATION */}
+              <div>
+                <label className="label">Last Seen Location</label>
+                <input
+                  type="text"
+                  placeholder="e.g. Hostel A, Room 204, Common Area"
+                  required
+                />
+              </div>
 
-              <input type="date" required />
+              {/* DATE */}
+              <div>
+                <label className="label">Date Lost</label>
+                <input type="date" required />
+              </div>
 
-              <input type="file" accept="image/*" />
+              {/* IMAGE */}
+              <div>
+                <label className="label">Upload Image (optional)</label>
+                <input type="file" accept="image/*" />
+              </div>
 
-              <button className="btn-primary" style={{ alignSelf: "flex-end" }}>
-                Submit Lost Report
-              </button>
+              {/* ACTION */}
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-end",
+                  marginTop: "10px",
+                }}
+              >
+                <button className="btn-primary">
+                  Submit Lost Report
+                </button>
+              </div>
             </div>
           </div>
 
           {/* NOTE */}
           <p style={{ marginTop: "16px", fontSize: "13px", opacity: 0.7 }}>
-            Please ensure the information provided is accurate. False reports may
-            lead to disciplinary action.
+            Submitting false or misleading information may result in
+            disciplinary action.
           </p>
         </div>
       </section>
