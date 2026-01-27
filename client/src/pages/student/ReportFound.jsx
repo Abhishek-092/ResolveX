@@ -1,8 +1,7 @@
+import { useState } from "react";
 import Navbar from "../../components/common/Navbar";
 import BackButton from "../../components/common/BackButton";
-import { useState } from "react";
 import SubmitPopup from "../../components/common/SubmitPopup";
-
 
 const field = {
   display: "flex",
@@ -17,9 +16,17 @@ const inputBase = {
 };
 
 const ReportFound = () => {
+  const [showPopup, setShowPopup] = useState(false);
+
   return (
     <>
       <Navbar />
+
+      <SubmitPopup
+        open={showPopup}
+        onClose={() => setShowPopup(false)}
+        variant="found"
+      />
 
       <section className="section">
         <div className="container" style={{ maxWidth: "820px" }}>
@@ -51,14 +58,7 @@ const ReportFound = () => {
 
           {/* FORM */}
           <div className="glass" style={{ padding: "40px" }}>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: "20px",
-              }}
-            >
-              {/* ITEM NAME */}
+            <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
               <div style={field}>
                 <label className="label">Item name</label>
                 <input
@@ -69,7 +69,6 @@ const ReportFound = () => {
                 />
               </div>
 
-              {/* DESCRIPTION */}
               <div style={field}>
                 <label className="label">Description</label>
                 <textarea
@@ -85,7 +84,6 @@ const ReportFound = () => {
                 />
               </div>
 
-              {/* LOCATION */}
               <div style={field}>
                 <label className="label">Found location</label>
                 <input
@@ -96,7 +94,6 @@ const ReportFound = () => {
                 />
               </div>
 
-              {/* DATE & TIME */}
               <div
                 style={{
                   display: "grid",
@@ -134,7 +131,6 @@ const ReportFound = () => {
                 </div>
               </div>
 
-              {/* IMAGE */}
               <div style={field}>
                 <label className="label">Upload image (optional)</label>
                 <input type="file" accept="image/*" />
@@ -143,14 +139,7 @@ const ReportFound = () => {
                 </span>
               </div>
 
-              {/* SUBMIT */}
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  marginTop: "16px",
-                }}
-              >
+              <div style={{ display: "flex", justifyContent: "center", marginTop: "16px" }}>
                 <button
                   className="btn-primary"
                   style={{
@@ -158,6 +147,7 @@ const ReportFound = () => {
                     fontSize: "18px",
                     padding: "14px 0",
                   }}
+                  onClick={() => setShowPopup(true)}
                 >
                   Submit found report
                 </button>
