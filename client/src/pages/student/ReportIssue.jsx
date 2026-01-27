@@ -16,29 +16,20 @@ import {
 import Navbar from "../../components/common/Navbar";
 import BackButton from "../../components/common/BackButton";
 
-const categoryColors = {
-  Plumbing: "#38bdf8",
-  Electrical: "#facc15",
-  Internet: "#a78bfa",
-  Furniture: "#2dd4bf",
-  Maintenance: "#fb923c",
-  Other: "#cbd5f5",
-};
-
 const categories = [
-  { label: "Plumbing", icon: Droplets },
-  { label: "Electrical", icon: Zap },
-  { label: "Internet", icon: Wifi },
-  { label: "Furniture", icon: Armchair },
-  { label: "Maintenance", icon: Wrench },
-  { label: "Other", icon: AlertCircle },
+  { label: "Plumbing", icon: Droplets, color: "#38bdf8" },
+  { label: "Electrical", icon: Zap, color: "#facc15" },
+  { label: "Internet", icon: Wifi, color: "#a78bfa" },
+  { label: "Furniture", icon: Armchair, color: "#2dd4bf" },
+  { label: "Maintenance", icon: Wrench, color: "#fb923c" },
+  { label: "Other", icon: AlertCircle, color: "#cbd5f5" },
 ];
 
 const priorityStyles = {
-  Low: { bg: "#22c55e", text: "#052e16" },
-  Medium: { bg: "#3b82f6", text: "#eff6ff" },
-  High: { bg: "#f59e0b", text: "#451a03" },
-  Emergency: { bg: "#ef4444", text: "#fff1f2" },
+  Low: "#22c55e",
+  Medium: "#3b82f6",
+  High: "#f59e0b",
+  Emergency: "#ef4444",
 };
 
 const ReportIssue = () => {
@@ -51,13 +42,13 @@ const ReportIssue = () => {
     otherLocation: "",
   });
 
-  // Mocked user location (later comes from profile)
+  // mocked user location (later from profile)
   const userRoom = "Hostel A · Room 204";
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Issue submitted:", form);
-    alert("Issue submitted successfully (mock)");
+    console.log("Submitted issue:", form);
+    alert("Issue submitted (mock)");
   };
 
   return (
@@ -66,22 +57,22 @@ const ReportIssue = () => {
 
       <section className="section">
         <div className="container" style={{ maxWidth: "720px" }}>
-          {/* HEADER */}
-          <div
+          {/* HEADER — FINAL, BASELINE-ALIGNED */}
+          <h1
             style={{
               display: "flex",
               alignItems: "center",
-              gap: "16px",
-              marginBottom: "10px",
+              gap: "12px",
+              margin: 0,
             }}
           >
-          <BackButton />
-          <h1 style={{ margin: 0 }}>Report an Issue</h1>
-        </div>
+            <BackButton />
+            Report an Issue
+          </h1>
 
-
-          <p style={{ marginBottom: "24px" }}>
-            Provide accurate details to help resolve the issue quickly.
+          <p style={{ margin: "12px 0 24px" }}>
+            Provide accurate details to help campus management resolve the issue
+            quickly.
           </p>
 
           <form onSubmit={handleSubmit}>
@@ -95,7 +86,7 @@ const ReportIssue = () => {
                 margin: "10px 0 22px",
               }}
             >
-              {categories.map(({ label, icon: Icon }) => {
+              {categories.map(({ label, icon: Icon, color }) => {
                 const active = form.category === label;
                 return (
                   <button
@@ -110,11 +101,11 @@ const ReportIssue = () => {
                       gap: "10px",
                       cursor: "pointer",
                       background: active
-                        ? categoryColors[label]
+                        ? color
                         : "rgba(255,255,255,0.12)",
                       color: active ? "#0f172a" : "#e5e7eb",
                       border: active
-                        ? `2px solid ${categoryColors[label]}`
+                        ? `2px solid ${color}`
                         : "1px solid rgba(255,255,255,0.25)",
                     }}
                   >
@@ -138,14 +129,12 @@ const ReportIssue = () => {
                     style={{
                       padding: "12px 18px",
                       borderRadius: "14px",
-                      cursor: "pointer",
                       border: "none",
+                      cursor: "pointer",
                       background: active
-                        ? priorityStyles[level].bg
+                        ? priorityStyles[level]
                         : "rgba(255,255,255,0.12)",
-                      color: active
-                        ? priorityStyles[level].text
-                        : "#e5e7eb",
+                      color: active ? "#ffffff" : "#e5e7eb",
                     }}
                   >
                     {level}
@@ -158,20 +147,19 @@ const ReportIssue = () => {
             {form.priority === "Emergency" && (
               <div
                 style={{
-                  marginBottom: "22px",
                   padding: "14px",
                   borderRadius: "14px",
                   background: "rgba(239,68,68,0.12)",
                   border: "1px solid #ef4444",
                   display: "flex",
                   gap: "10px",
+                  marginBottom: "22px",
                 }}
               >
                 <AlertTriangle size={20} color="#ef4444" />
                 <p style={{ fontSize: "14px", color: "#fecaca" }}>
-                  Select <strong>Emergency</strong> only for actual medical
-                  emergencies or safety hazards. False alerts may lead to
-                  disciplinary action.
+                  Select <strong>Emergency</strong> only for real emergencies or
+                  safety hazards. False alerts are a punishable offense.
                 </p>
               </div>
             )}
@@ -180,6 +168,7 @@ const ReportIssue = () => {
             <label>Issue Description</label>
             <textarea
               rows={4}
+              required
               value={form.description}
               onChange={(e) =>
                 setForm({ ...form, description: e.target.value })
@@ -191,7 +180,6 @@ const ReportIssue = () => {
                 borderRadius: "12px",
                 margin: "8px 0 22px",
               }}
-              required
             />
 
             {/* IMAGE */}
@@ -204,11 +192,11 @@ const ReportIssue = () => {
                 borderRadius: "14px",
                 background: "#ffffff",
                 color: "#0f172a",
+                border: "none",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
                 gap: "10px",
-                border: "none",
                 margin: "8px 0 22px",
               }}
             >
@@ -229,6 +217,9 @@ const ReportIssue = () => {
                     style={{
                       padding: "12px 18px",
                       borderRadius: "14px",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "8px",
                       background: active
                         ? "#22d3ee"
                         : "rgba(255,255,255,0.12)",
@@ -236,9 +227,6 @@ const ReportIssue = () => {
                       border: active
                         ? "2px solid #22d3ee"
                         : "1px solid rgba(255,255,255,0.25)",
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "8px",
                     }}
                   >
                     {v === "public" ? <Eye size={16} /> : <EyeOff size={16} />}
@@ -282,12 +270,12 @@ const ReportIssue = () => {
                   <MapPin size={18} />
                   <input
                     type="text"
+                    required
                     placeholder="Specify room or common area"
                     value={form.otherLocation}
                     onChange={(e) =>
                       setForm({ ...form, otherLocation: e.target.value })
                     }
-                    required
                   />
                 </div>
               )}
