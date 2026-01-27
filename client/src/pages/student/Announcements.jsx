@@ -47,16 +47,18 @@ const StudentAnnouncements = () => {
             }}
           >
             <h1
-              style={{
+            style={{
                 display: "flex",
-                alignItems: "baseline",
+                alignItems: "center",
                 gap: "14px",
                 margin: 0,
-              }}
+                marginBottom: "10px",
+            }}
             >
-              <BackButton />
-              Announcements
+            <BackButton />
+            Announcements
             </h1>
+
           </div>
 
           <p style={{ marginBottom: "28px", opacity: 0.85 }}>
