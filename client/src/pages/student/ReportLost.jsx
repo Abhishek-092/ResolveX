@@ -1,5 +1,6 @@
 import Navbar from "../../components/common/Navbar";
 import BackButton from "../../components/common/BackButton";
+import { Calendar, Clock } from "lucide-react";
 
 const fieldStyle = {
   display: "flex",
@@ -9,6 +10,7 @@ const fieldStyle = {
 
 const inputStyle = {
   height: "44px",
+  paddingLeft: "40px",
 };
 
 const ReportLost = () => {
@@ -47,7 +49,7 @@ const ReportLost = () => {
                 <input
                   type="text"
                   placeholder="Wallet, ID card, earphones"
-                  style={inputStyle}
+                  style={{ height: "44px" }}
                   required
                 />
               </div>
@@ -69,7 +71,7 @@ const ReportLost = () => {
                 <input
                   type="text"
                   placeholder="Hostel A, Room 204, common area"
-                  style={inputStyle}
+                  style={{ height: "44px" }}
                   required
                 />
               </div>
@@ -77,20 +79,39 @@ const ReportLost = () => {
               {/* DATE & TIME */}
               <div
                 style={{
-                  display: "grid",
-                  gridTemplateColumns: "1fr 1fr",
-                  gap: "24px",
+                  display: "flex",
+                  gap: "20px",
                 }}
               >
-                <div style={fieldStyle}>
+                {/* DATE */}
+                <div style={{ ...fieldStyle, width: "200px", position: "relative" }}>
                   <label className="label">Date lost</label>
+                  <Calendar
+                    size={16}
+                    style={{
+                      position: "absolute",
+                      top: "38px",
+                      left: "12px",
+                      opacity: 0.6,
+                    }}
+                  />
                   <input type="date" style={inputStyle} required />
                 </div>
 
-                <div style={fieldStyle}>
+                {/* TIME */}
+                <div style={{ ...fieldStyle, width: "200px", position: "relative" }}>
                   <label className="label">
                     Time lost <span style={{ opacity: 0.6 }}>(optional)</span>
                   </label>
+                  <Clock
+                    size={16}
+                    style={{
+                      position: "absolute",
+                      top: "38px",
+                      left: "12px",
+                      opacity: 0.6,
+                    }}
+                  />
                   <input type="time" style={inputStyle} />
                 </div>
               </div>
@@ -105,8 +126,15 @@ const ReportLost = () => {
               </div>
 
               {/* SUBMIT */}
-              <div style={{ display: "flex", justifyContent: "center", marginTop: "12px" }}>
-                <button className="btn-primary" style={{ minWidth: "220px" }}>
+              <div style={{ display: "flex", justifyContent: "center", marginTop: "16px" }}>
+                <button
+                  className="btn-primary"
+                  style={{
+                    minWidth: "240px",
+                    fontSize: "16px",
+                    padding: "12px 0",
+                  }}
+                >
                   Submit lost report
                 </button>
               </div>
