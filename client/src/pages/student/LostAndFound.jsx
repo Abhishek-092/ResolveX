@@ -25,11 +25,11 @@ const items = [
   {
     id: 2,
     reportType: "Found",
-    name: "Bluetooth Earbuds",
-    description: "Found near the library entrance.",
-    location: "Central Library",
-    date: "11 Sep 2025",
-    status: "Claim Requested",
+    name: "Laptop Charger",
+    description: "Dell laptop charger found in study room.",
+    location: "Hostel C · Study Area",
+    date: "14 Sep 2025",
+    status: "Open",
   },
   {
     id: 3,
@@ -43,11 +43,11 @@ const items = [
   {
     id: 4,
     reportType: "Found",
-    name: "Laptop Charger",
-    description: "Dell laptop charger found in study room.",
-    location: "Hostel C · Study Area",
-    date: "14 Sep 2025",
-    status: "Open",
+    name: "Bluetooth Earbuds",
+    description: "Found near the library entrance.",
+    location: "Central Library",
+    date: "11 Sep 2025",
+    status: "Claim Requested",
   },
 ];
 
@@ -232,7 +232,7 @@ const LostAndFound = () => {
                             cursor: "pointer",
                           }}
                         >
-                          This Is Mine
+                          Claim
                         </button>
                       )}
 
