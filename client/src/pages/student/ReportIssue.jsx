@@ -10,6 +10,7 @@ import {
   Eye,
   EyeOff,
   MapPin,
+  AlertTriangle,
 } from "lucide-react";
 
 import Navbar from "../../components/common/Navbar";
@@ -23,26 +24,32 @@ const categories = [
   { label: "Other", icon: <AlertCircle size={18} /> },
 ];
 
+const priorityConfig = {
+  Low: { border: "#4ade80" },
+  Medium: { border: "#60a5fa" },
+  High: { border: "#fbbf24" },
+  Emergency: { border: "#ef4444" },
+};
+
 const ReportIssue = () => {
   const [form, setForm] = useState({
     category: "",
     priority: "Medium",
     description: "",
     visibility: "public",
-    image: null,
     locationType: "my-room",
     otherLocation: "",
+  });
+
+  const selectedStyle = (color) => ({
+    background: "#ffffff",
+    color: "#0f172a",
+    border: `2px solid ${color}`,
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
     alert("Issue reported successfully (mock)");
-  };
-
-  const selectedStyle = {
-    background: "#ffffff",
-    color: "#0f172a",
-    border: "1px solid #5eead4",
   };
 
   return (
@@ -73,14 +80,16 @@ const ReportIssue = () => {
               >
                 {categories.map((cat) => (
                   <button
-                    type="button"
                     key={cat.label}
+                    type="button"
+                    className="glass"
                     onClick={() =>
                       setForm({ ...form, category: cat.label })
                     }
-                    className="glass"
                     style={
-                      form.category === cat.label ? selectedStyle : {}
+                      form.category === cat.label
+                        ? selectedStyle("#5eead4")
+                        : {}
                     }
                   >
                     {cat.icon}
@@ -93,24 +102,50 @@ const ReportIssue = () => {
             {/* Priority */}
             <div style={{ marginBottom: "20px" }}>
               <label>Priority</label>
-              <select
-                value={form.priority}
-                onChange={(e) =>
-                  setForm({ ...form, priority: e.target.value })
-                }
+              <div style={{ display: "flex", gap: "12px", marginTop: "10px" }}>
+                {Object.keys(priorityConfig).map((level) => (
+                  <button
+                    key={level}
+                    type="button"
+                    className="glass"
+                    onClick={() =>
+                      setForm({ ...form, priority: level })
+                    }
+                    style={
+                      form.priority === level
+                        ? selectedStyle(priorityConfig[level].border)
+                        : {}
+                    }
+                  >
+                    {level}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Emergency Warning */}
+            {form.priority === "Emergency" && (
+              <div
                 style={{
-                  width: "100%",
-                  marginTop: "8px",
-                  padding: "12px",
-                  borderRadius: "12px",
+                  marginBottom: "20px",
+                  padding: "14px",
+                  borderRadius: "14px",
+                  background: "rgba(239,68,68,0.1)",
+                  border: "1px solid #ef4444",
+                  display: "flex",
+                  gap: "10px",
+                  alignItems: "flex-start",
                 }}
               >
-                <option>Low</option>
-                <option>Medium</option>
-                <option>High</option>
-                <option>Emergency</option>
-              </select>
-            </div>
+                <AlertTriangle size={20} color="#ef4444" />
+                <p style={{ fontSize: "14px", color: "#fecaca" }}>
+                  Select <strong>Emergency</strong> only for actual safety
+                  hazards or medical emergencies. This triggers immediate
+                  administrative alerts. Misuse may lead to disciplinary
+                  action.
+                </p>
+              </div>
+            )}
 
             {/* Description */}
             <div style={{ marginBottom: "20px" }}>
@@ -148,7 +183,6 @@ const ReportIssue = () => {
                   justifyContent: "center",
                   gap: "10px",
                   border: "none",
-                  cursor: "pointer",
                 }}
               >
                 <Upload size={18} />
@@ -167,7 +201,9 @@ const ReportIssue = () => {
                     setForm({ ...form, visibility: "public" })
                   }
                   style={
-                    form.visibility === "public" ? selectedStyle : {}
+                    form.visibility === "public"
+                      ? selectedStyle("#5eead4")
+                      : {}
                   }
                 >
                   <Eye size={16} /> Public
@@ -180,7 +216,9 @@ const ReportIssue = () => {
                     setForm({ ...form, visibility: "private" })
                   }
                   style={
-                    form.visibility === "private" ? selectedStyle : {}
+                    form.visibility === "private"
+                      ? selectedStyle("#5eead4")
+                      : {}
                   }
                 >
                   <EyeOff size={16} /> Private
@@ -192,31 +230,27 @@ const ReportIssue = () => {
             <div className="glass" style={{ marginBottom: "28px" }}>
               <h3>Issue Location</h3>
 
-              <div style={{ marginTop: "12px" }}>
-                <label>
-                  <input
-                    type="radio"
-                    checked={form.locationType === "my-room"}
-                    onChange={() =>
-                      setForm({ ...form, locationType: "my-room" })
-                    }
-                  />{" "}
-                  My Room (Hostel A · Room 204)
-                </label>
-              </div>
+              <label style={{ display: "block", marginTop: "10px" }}>
+                <input
+                  type="radio"
+                  checked={form.locationType === "my-room"}
+                  onChange={() =>
+                    setForm({ ...form, locationType: "my-room" })
+                  }
+                />{" "}
+                My Room (Hostel A · Room 204)
+              </label>
 
-              <div style={{ marginTop: "10px" }}>
-                <label>
-                  <input
-                    type="radio"
-                    checked={form.locationType === "other"}
-                    onChange={() =>
-                      setForm({ ...form, locationType: "other" })
-                    }
-                  />{" "}
-                  Other Area
-                </label>
-              </div>
+              <label style={{ display: "block", marginTop: "10px" }}>
+                <input
+                  type="radio"
+                  checked={form.locationType === "other"}
+                  onChange={() =>
+                    setForm({ ...form, locationType: "other" })
+                  }
+                />{" "}
+                Other Area
+              </label>
 
               {form.locationType === "other" && (
                 <div style={{ marginTop: "12px" }}>
