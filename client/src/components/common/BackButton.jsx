@@ -9,20 +9,17 @@ const BackButton = () => {
       onClick={() => navigate(-1)}
       aria-label="Go back"
       style={{
-        width: "36px",
-        height: "36px",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        background: "rgba(255,255,255,0.18)",
-        border: "1px solid rgba(255,255,255,0.28)",
-        borderRadius: "10px",
+        background: "none",
+        border: "none",
+        padding: 0,
+        margin: 0,
         cursor: "pointer",
-        color: "#e5e7eb",
-        flexShrink: 0,
+        display: "inline-flex",
+        alignItems: "center",
+        color: "inherit",
       }}
     >
-      <ArrowLeft size={18} />
+      <ArrowLeft size={18} style={{ verticalAlign: "middle" }} />
     </button>
   );
 };
