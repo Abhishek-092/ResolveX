@@ -34,26 +34,6 @@ const issues = [
     comments: 3,
     date: "12 Sep 2025",
   },
-  {
-    id: 2,
-    category: "Electrical",
-    description: "Tube light not working in the corridor.",
-    priority: "Medium",
-    status: "Assigned",
-    visibility: "public",
-    comments: 1,
-    date: "10 Sep 2025",
-  },
-  {
-    id: 3,
-    category: "Internet",
-    description: "WiFi disconnects frequently during night hours.",
-    priority: "Low",
-    status: "Resolved",
-    visibility: "private",
-    comments: 0,
-    date: "05 Sep 2025",
-  },
 ];
 
 const priorityColors = {
@@ -87,17 +67,20 @@ const MyIssues = () => {
 
       <section className="section">
         <div className="container" style={{ maxWidth: "900px" }}>
-          {/* Header */}
+          {/* HEADER */}
           <div
             style={{
               display: "flex",
               alignItems: "center",
-              gap: "24px",
-              marginBottom: "12px",
+              gap: "20px",
+              lineHeight: "1.2",
+              marginBottom: "8px",
             }}
           >
             <BackButton />
-            <h1 style={{ margin: 0 }}>My Issues</h1>
+            <h1 style={{ margin: 0, lineHeight: "1.2" }}>
+              My Issues
+            </h1>
           </div>
 
           <p style={{ marginBottom: "28px" }}>
@@ -107,6 +90,7 @@ const MyIssues = () => {
           <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
             {issues.map((issue) => {
               const Icon = iconMap[issue.category];
+
               return (
                 <Link
                   key={issue.id}
@@ -151,8 +135,7 @@ const MyIssues = () => {
                           }}
                         >
                           <MessageSquare size={14} />
-                          {issue.comments} comment
-                          {issue.comments !== 1 ? "s" : ""}
+                          {issue.comments} comments
                         </div>
                       )}
                     </div>
@@ -199,12 +182,8 @@ const MyIssues = () => {
                           color: "#cbd5f5",
                         }}
                       >
-                        {issue.visibility === "public" ? (
-                          <Eye size={14} />
-                        ) : (
-                          <EyeOff size={14} />
-                        )}
-                        {issue.visibility === "public" ? "Public" : "Private"}
+                        <Eye size={14} />
+                        Public
                       </span>
                     </div>
                   </div>
