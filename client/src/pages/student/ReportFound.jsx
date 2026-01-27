@@ -1,24 +1,16 @@
 import Navbar from "../../components/common/Navbar";
 import BackButton from "../../components/common/BackButton";
-import { Calendar, Clock } from "lucide-react";
 
-const fieldStyle = {
+const field = {
   display: "flex",
   flexDirection: "column",
   gap: "10px",
 };
 
-const inputStyle = {
-  height: "48px",
-  paddingLeft: "50px",
-  fontSize: "15px",
-};
-
-const iconStyle = {
-  position: "absolute",
-  top: "42px",
-  left: "14px",
-  opacity: 0.7,
+const inputBase = {
+  height: "52px",
+  fontSize: "16px",
+  borderRadius: "12px",
 };
 
 const ReportFound = () => {
@@ -42,45 +34,61 @@ const ReportFound = () => {
               Report Found Item
             </h1>
 
-            <p style={{ opacity: 0.8, maxWidth: "640px" }}>
-              Use this form to report an item you have found so it can be claimed
-              by its rightful owner.
+            <p
+              style={{
+                opacity: 0.8,
+                maxWidth: "640px",
+                marginLeft: "42px",
+              }}
+            >
+              Use this form to report an item you have found so it can be returned
+              to its rightful owner.
             </p>
           </div>
 
           {/* FORM */}
           <div className="glass" style={{ padding: "40px" }}>
-            <div style={{ display: "flex", flexDirection: "column", gap: "34px" }}>
-              
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "20px",
+              }}
+            >
               {/* ITEM NAME */}
-              <div style={fieldStyle}>
+              <div style={field}>
                 <label className="label">Item name</label>
                 <input
                   type="text"
-                  placeholder="Bottle, charger, watch"
-                  style={{ height: "48px", fontSize: "15px" }}
+                  placeholder="  Bottle, charger, watch"
+                  style={inputBase}
                   required
                 />
               </div>
 
               {/* DESCRIPTION */}
-              <div style={fieldStyle}>
+              <div style={field}>
                 <label className="label">Description</label>
                 <textarea
                   rows="4"
-                  placeholder="Describe the item and where you found it"
-                  style={{ resize: "none", fontSize: "15px" }}
+                  placeholder=" Color, brand, where you found it"
+                  style={{
+                    fontSize: "16px",
+                    borderRadius: "12px",
+                    resize: "none",
+                    paddingTop: "4px",
+                  }}
                   required
                 />
               </div>
 
               {/* LOCATION */}
-              <div style={fieldStyle}>
+              <div style={field}>
                 <label className="label">Found location</label>
                 <input
                   type="text"
-                  placeholder="Library, study room, corridor"
-                  style={{ height: "48px", fontSize: "15px" }}
+                  placeholder="  Library, study room, corridor"
+                  style={inputBase}
                   required
                 />
               </div>
@@ -89,31 +97,42 @@ const ReportFound = () => {
               <div
                 style={{
                   display: "grid",
-                  gridTemplateColumns: "220px 1fr 220px",
-                  gap: "36px",
+                  gridTemplateColumns: "200px 200px",
+                  gap: "48px",
                 }}
               >
-                {/* DATE */}
-                <div style={{ ...fieldStyle, position: "relative" }}>
+                <div style={field}>
                   <label className="label">Date found</label>
-                  <Calendar size={20} style={iconStyle} />
-                  <input type="date" style={inputStyle} required />
+                  <input
+                    type="date"
+                    style={{
+                      ...inputBase,
+                      width: "150px",
+                      paddingLeft: "12px",
+                      paddingRight: "12px",
+                    }}
+                    required
+                  />
                 </div>
 
-                {/* spacer */}
-
-                {/* TIME */}
-                <div style={{ ...fieldStyle, position: "relative" }}>
+                <div style={field}>
                   <label className="label">
                     Time found <span style={{ opacity: 0.6 }}>(optional)</span>
                   </label>
-                  <Clock size={20} style={iconStyle} />
-                  <input type="time" style={inputStyle} />
+                  <input
+                    type="time"
+                    style={{
+                      ...inputBase,
+                      width: "150px",
+                      paddingLeft: "12px",
+                      paddingRight: "12px",
+                    }}
+                  />
                 </div>
               </div>
 
               {/* IMAGE */}
-              <div style={fieldStyle}>
+              <div style={field}>
                 <label className="label">Upload image (optional)</label>
                 <input type="file" accept="image/*" />
                 <span style={{ fontSize: "12px", opacity: 0.6 }}>
@@ -122,12 +141,18 @@ const ReportFound = () => {
               </div>
 
               {/* SUBMIT */}
-              <div style={{ display: "flex", justifyContent: "center", marginTop: "10px" }}>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  marginTop: "16px",
+                }}
+              >
                 <button
                   className="btn-primary"
                   style={{
                     minWidth: "260px",
-                    fontSize: "17px",
+                    fontSize: "18px",
                     padding: "14px 0",
                   }}
                 >
@@ -138,7 +163,7 @@ const ReportFound = () => {
           </div>
 
           <p style={{ marginTop: "20px", fontSize: "13px", opacity: 0.7 }}>
-            Any misuse of this feature may result in penalties.
+            Any misuse of this feature may lead to disciplinary action.
           </p>
         </div>
       </section>
