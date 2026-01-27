@@ -40,6 +40,15 @@ const items = [
     date: "08 Sep 2025",
     status: "Claim Approved",
   },
+  {
+    id: 4,
+    reportType: "Found",
+    name: "Laptop Charger",
+    description: "Dell laptop charger found in study room.",
+    location: "Hostel C · Study Area",
+    date: "14 Sep 2025",
+    status: "Open",
+  },
 ];
 
 const LostAndFound = () => {
