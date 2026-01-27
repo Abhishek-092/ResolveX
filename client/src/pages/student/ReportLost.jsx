@@ -105,9 +105,10 @@ const ReportLost = () => {
                   <label className="label">Date lost</label>
                   <input
                     type="date"
-                    style={{ ...inputBase, width: "200px" }}
+                    style={{   ...inputBase, width: "150px" , paddingLeft: "12px", paddingRight: "12px"}}
                     required
                   />
+                  
                 </div>
 
                 <div style={field}>
@@ -116,7 +117,7 @@ const ReportLost = () => {
                   </label>
                   <input
                     type="time"
-                    style={{ ...inputBase, width: "200px" }}
+                    style={{ ...inputBase, width: "150px" , paddingLeft: "12px", paddingRight: "12px"}}
                   />
                 </div>
               </div>
