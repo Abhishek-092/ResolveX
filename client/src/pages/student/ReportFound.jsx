@@ -1,5 +1,6 @@
 import Navbar from "../../components/common/Navbar";
 import BackButton from "../../components/common/BackButton";
+import { Calendar, Clock } from "lucide-react";
 
 const fieldStyle = {
   display: "flex",
@@ -9,6 +10,7 @@ const fieldStyle = {
 
 const inputStyle = {
   height: "44px",
+  paddingLeft: "40px",
 };
 
 const ReportFound = () => {
@@ -33,7 +35,7 @@ const ReportFound = () => {
             </h1>
 
             <p style={{ opacity: 0.8, maxWidth: "620px" }}>
-              Provide details of an item you have found so it can be returned to its owner.
+              Provide details of an item you have found so it can be returned.
             </p>
           </div>
 
@@ -41,18 +43,16 @@ const ReportFound = () => {
           <div className="glass" style={{ padding: "36px" }}>
             <div style={{ display: "flex", flexDirection: "column", gap: "28px" }}>
               
-              {/* ITEM NAME */}
               <div style={fieldStyle}>
                 <label className="label">Item name</label>
                 <input
                   type="text"
                   placeholder="Bottle, charger, watch"
-                  style={inputStyle}
+                  style={{ height: "44px" }}
                   required
                 />
               </div>
 
-              {/* DESCRIPTION */}
               <div style={fieldStyle}>
                 <label className="label">Description</label>
                 <textarea
@@ -63,34 +63,45 @@ const ReportFound = () => {
                 />
               </div>
 
-              {/* LOCATION */}
               <div style={fieldStyle}>
                 <label className="label">Found location</label>
                 <input
                   type="text"
                   placeholder="Library, study room, corridor"
-                  style={inputStyle}
+                  style={{ height: "44px" }}
                   required
                 />
               </div>
 
               {/* DATE & TIME */}
-              <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "1fr 1fr",
-                  gap: "24px",
-                }}
-              >
-                <div style={fieldStyle}>
+              <div style={{ display: "flex", gap: "20px" }}>
+                <div style={{ ...fieldStyle, width: "200px", position: "relative" }}>
                   <label className="label">Date found</label>
+                  <Calendar
+                    size={16}
+                    style={{
+                      position: "absolute",
+                      top: "38px",
+                      left: "12px",
+                      opacity: 0.6,
+                    }}
+                  />
                   <input type="date" style={inputStyle} required />
                 </div>
 
-                <div style={fieldStyle}>
+                <div style={{ ...fieldStyle, width: "200px", position: "relative" }}>
                   <label className="label">
                     Time found <span style={{ opacity: 0.6 }}>(optional)</span>
                   </label>
+                  <Clock
+                    size={16}
+                    style={{
+                      position: "absolute",
+                      top: "38px",
+                      left: "12px",
+                      opacity: 0.6,
+                    }}
+                  />
                   <input type="time" style={inputStyle} />
                 </div>
               </div>
@@ -105,8 +116,15 @@ const ReportFound = () => {
               </div>
 
               {/* SUBMIT */}
-              <div style={{ display: "flex", justifyContent: "center", marginTop: "12px" }}>
-                <button className="btn-primary" style={{ minWidth: "220px" }}>
+              <div style={{ display: "flex", justifyContent: "center", marginTop: "16px" }}>
+                <button
+                  className="btn-primary"
+                  style={{
+                    minWidth: "240px",
+                    fontSize: "16px",
+                    padding: "12px 0",
+                  }}
+                >
                   Submit found report
                 </button>
               </div>
