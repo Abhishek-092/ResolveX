@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 
 import Navbar from "../../components/common/Navbar";
+import BackButton from "../../components/common/BackButton";
 
 const categoryColors = {
   Plumbing: "#38bdf8",
@@ -88,6 +89,7 @@ const MyIssues = () => {
         <div className="container" style={{ maxWidth: "900px" }}>
           {/* Header */}
           <div style={{ marginBottom: "28px" }}>
+            <BackButton />
             <h1>My Issues</h1>
             <p style={{ marginTop: "6px" }}>
               Track the status of issues you have reported.
