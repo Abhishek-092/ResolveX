@@ -51,6 +51,12 @@ const ReportIssue = () => {
     otherLocation: "",
   });
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Issue submitted:", form);
+    alert("Issue submitted successfully (mock)");
+  };
+
   return (
     <>
       <Navbar />
@@ -58,25 +64,24 @@ const ReportIssue = () => {
       <section className="section">
         <div className="container" style={{ maxWidth: "720px" }}>
           {/* HEADER */}
-         <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "20px",
-            marginBottom: "10px",
-          }}
-        >
-          <BackButton />
-          <h1 style={{ margin: 0 }}>Report an Issue</h1>
-        </div>
-
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "20px",
+              marginBottom: "10px",
+            }}
+          >
+            <BackButton />
+            <h1 style={{ margin: 0 }}>Report an Issue</h1>
+          </div>
 
           <p style={{ marginBottom: "24px" }}>
             Provide accurate details to help resolve the issue quickly.
           </p>
 
-          <form>
-            {/* Category */}
+          <form onSubmit={handleSubmit}>
+            {/* CATEGORY */}
             <label>Issue Category</label>
             <div
               style={{
@@ -99,6 +104,7 @@ const ReportIssue = () => {
                       display: "flex",
                       alignItems: "center",
                       gap: "10px",
+                      cursor: "pointer",
                       background: active
                         ? categoryColors[label]
                         : "rgba(255,255,255,0.12)",
@@ -106,7 +112,6 @@ const ReportIssue = () => {
                       border: active
                         ? `2px solid ${categoryColors[label]}`
                         : "1px solid rgba(255,255,255,0.25)",
-                      cursor: "pointer",
                     }}
                   >
                     <Icon size={18} />
@@ -116,7 +121,7 @@ const ReportIssue = () => {
               })}
             </div>
 
-            {/* Priority */}
+            {/* PRIORITY */}
             <label>Priority</label>
             <div style={{ display: "flex", gap: "12px", margin: "10px 0 22px" }}>
               {Object.keys(priorityStyles).map((level) => {
@@ -129,14 +134,14 @@ const ReportIssue = () => {
                     style={{
                       padding: "12px 18px",
                       borderRadius: "14px",
+                      cursor: "pointer",
+                      border: "none",
                       background: active
                         ? priorityStyles[level].bg
                         : "rgba(255,255,255,0.12)",
                       color: active
                         ? priorityStyles[level].text
                         : "#e5e7eb",
-                      border: "none",
-                      cursor: "pointer",
                     }}
                   >
                     {level}
@@ -145,28 +150,29 @@ const ReportIssue = () => {
               })}
             </div>
 
-            {/* Emergency Warning */}
+            {/* EMERGENCY WARNING */}
             {form.priority === "Emergency" && (
               <div
                 style={{
+                  marginBottom: "22px",
                   padding: "14px",
                   borderRadius: "14px",
                   background: "rgba(239,68,68,0.12)",
                   border: "1px solid #ef4444",
                   display: "flex",
                   gap: "10px",
-                  marginBottom: "22px",
                 }}
               >
                 <AlertTriangle size={20} color="#ef4444" />
                 <p style={{ fontSize: "14px", color: "#fecaca" }}>
-                  Select <strong>Emergency</strong> only for real emergencies.
-                  False alerts may lead to disciplinary action.
+                  Select <strong>Emergency</strong> only for actual medical
+                  emergencies or safety hazards. False alerts may lead to
+                  disciplinary action.
                 </p>
               </div>
             )}
 
-            {/* Description */}
+            {/* DESCRIPTION */}
             <label>Issue Description</label>
             <textarea
               rows={4}
@@ -181,9 +187,10 @@ const ReportIssue = () => {
                 borderRadius: "12px",
                 margin: "8px 0 22px",
               }}
+              required
             />
 
-            {/* Image */}
+            {/* IMAGE */}
             <label>Attach Image (optional)</label>
             <button
               type="button"
@@ -193,11 +200,11 @@ const ReportIssue = () => {
                 borderRadius: "14px",
                 background: "#ffffff",
                 color: "#0f172a",
-                border: "none",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
                 gap: "10px",
+                border: "none",
                 margin: "8px 0 22px",
               }}
             >
@@ -205,7 +212,84 @@ const ReportIssue = () => {
               Upload an image
             </button>
 
-            {/* Submit */}
+            {/* VISIBILITY */}
+            <label>Visibility</label>
+            <div style={{ display: "flex", gap: "14px", margin: "10px 0 22px" }}>
+              {["public", "private"].map((v) => {
+                const active = form.visibility === v;
+                return (
+                  <button
+                    key={v}
+                    type="button"
+                    onClick={() => setForm({ ...form, visibility: v })}
+                    style={{
+                      padding: "12px 18px",
+                      borderRadius: "14px",
+                      background: active
+                        ? "#22d3ee"
+                        : "rgba(255,255,255,0.12)",
+                      color: active ? "#022c22" : "#e5e7eb",
+                      border: active
+                        ? "2px solid #22d3ee"
+                        : "1px solid rgba(255,255,255,0.25)",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "8px",
+                    }}
+                  >
+                    {v === "public" ? <Eye size={16} /> : <EyeOff size={16} />}
+                    {v === "public" ? "Public" : "Private"}
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* LOCATION */}
+            <div className="glass" style={{ marginBottom: "28px" }}>
+              <h3 style={{ marginTop: 0 }}>Issue Location</h3>
+
+              <label style={{ display: "block", marginBottom: "8px" }}>
+                <input
+                  type="radio"
+                  checked={form.locationType === "my-room"}
+                  onChange={() =>
+                    setForm({ ...form, locationType: "my-room" })
+                  }
+                />{" "}
+                My Room (default)
+              </label>
+
+              <label style={{ display: "block" }}>
+                <input
+                  type="radio"
+                  checked={form.locationType === "other"}
+                  onChange={() =>
+                    setForm({ ...form, locationType: "other" })
+                  }
+                />{" "}
+                Other Room / Common Area
+              </label>
+
+              {form.locationType === "other" && (
+                <div
+                  className="input-box"
+                  style={{ marginTop: "10px", display: "flex", gap: "8px" }}
+                >
+                  <MapPin size={18} />
+                  <input
+                    type="text"
+                    placeholder="Specify room or common area"
+                    value={form.otherLocation}
+                    onChange={(e) =>
+                      setForm({ ...form, otherLocation: e.target.value })
+                    }
+                    required
+                  />
+                </div>
+              )}
+            </div>
+
+            {/* SUBMIT */}
             <button
               type="submit"
               className="btn-primary"
