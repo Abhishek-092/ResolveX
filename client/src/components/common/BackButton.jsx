@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
 
 const BackButton = () => {
   const navigate = useNavigate();
@@ -8,28 +9,20 @@ const BackButton = () => {
       onClick={() => navigate(-1)}
       aria-label="Go back"
       style={{
-        background: "none",
-        border: "none",
-        padding: 0,
-        margin: 0,
+        width: "36px",
+        height: "36px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        background: "rgba(255,255,255,0.18)",
+        border: "1px solid rgba(255,255,255,0.28)",
+        borderRadius: "10px",
         cursor: "pointer",
-
-        /* Typography */
-        fontSize: "1.4em",
-        fontWeight: 400,
-        lineHeight: "1",
-        letterSpacing: "-0.02em",
-
-        color: "inherit",
-        opacity: 0.85,
-
-        /* Subtle interaction */
-        transition: "opacity 0.15s ease",
+        color: "#e5e7eb",
+        flexShrink: 0,
       }}
-      onMouseEnter={(e) => (e.currentTarget.style.opacity = "1")}
-      onMouseLeave={(e) => (e.currentTarget.style.opacity = "0.85")}
     >
-      ‹
+      <ArrowLeft size={18} />
     </button>
   );
 };
