@@ -232,7 +232,7 @@ const LostAndFound = () => {
                             cursor: "pointer",
                           }}
                         >
-                          Claim
+                          Claim Item
                         </button>
                       )}
 
