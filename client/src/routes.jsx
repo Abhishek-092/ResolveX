@@ -11,6 +11,8 @@ import Register from "./pages/auth/Register";
 import StudentDashboard from "./pages/student/Dashboard";
 import ReportIssue from "./pages/student/ReportIssue";
 import MyIssues from "./pages/student/MyIssues";
+import IssueDetail from "./pages/student/IssueDetail";
+
 
 
 const AppRoutes = () => {
@@ -27,6 +29,7 @@ const AppRoutes = () => {
       <Route path="/student/dashboard" element={<StudentDashboard />} />
       <Route path="/student/report" element={<ReportIssue />} />
       <Route path="/student/issues" element={<MyIssues />} />
+      <Route path="/student/issues/:id" element={<IssueDetail />} />
     </Routes>
   );
 };
