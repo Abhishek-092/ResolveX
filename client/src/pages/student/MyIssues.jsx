@@ -139,7 +139,7 @@ const MyIssues = () => {
             <h1
               style={{
                 display: "flex",
-                alignItems: "baseline",
+                alignItems: "center",
                 gap: "14px",
                 margin: 0,
               }}
