@@ -18,6 +18,7 @@ import ReportLost from "./pages/student/ReportLost";
 import ReportFound from "./pages/student/ReportFound";
 import IssuesFeed from "./pages/student/IssuesFeed";
 import MyAccount from "./pages/student/MyAccount";
+import AdminDashboard from "./pages/admin/Dashboard";
 
 
 
@@ -43,6 +44,8 @@ const AppRoutes = () => {
   ️    <Route path="student/issues/feed" element={<IssuesFeed />} />
       <Route path="/student/account" element={<MyAccount />} />
 
+      {/* Admin */}
+      <Route path="/admin/dashboard" element={<AdminDashboard />} />
     </Routes>
   );
 };
