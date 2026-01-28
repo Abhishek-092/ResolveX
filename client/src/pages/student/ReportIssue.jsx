@@ -57,7 +57,7 @@ const ReportIssue = () => {
 
       <section className="section">
         <div className="container" style={{ maxWidth: "720px" }}>
-          {/* HEADER — FINAL, BASELINE-ALIGNED */}
+          {/* HEADER */}
           <h1
             style={{
               display: "flex",
@@ -69,7 +69,6 @@ const ReportIssue = () => {
             <BackButton />
             Report an Issue
           </h1>
-
 
           <p style={{ margin: "12px 0 24px" }}>
             Provide accurate details to help campus management resolve the issue
@@ -237,49 +236,85 @@ const ReportIssue = () => {
               })}
             </div>
 
-            {/* LOCATION */}
-            <div className="glass" style={{ marginBottom: "28px" }}>
-              <h3 style={{ marginTop: 0 }}>Issue Location</h3>
+            {/* LOCATION (FIXED SIZE & SPACING) */}
+            <div
+              className="glass"
+              style={{
+                marginBottom: "28px",
+                padding: "16px 18px",
+              }}
+            >
+              <h3 style={{ margin: "0 0 10px", fontSize: "16px" }}>
+                Issue Location
+              </h3>
 
-              <label style={{ display: "block", marginBottom: "8px" }}>
-                <input
-                  type="radio"
-                  checked={form.locationType === "my-room"}
-                  onChange={() =>
-                    setForm({ ...form, locationType: "my-room" })
-                  }
-                />{" "}
-                My Room <span style={{ opacity: 0.7 }}>({userRoom})</span>
-              </label>
-
-              <label style={{ display: "block" }}>
-                <input
-                  type="radio"
-                  checked={form.locationType === "other"}
-                  onChange={() =>
-                    setForm({ ...form, locationType: "other" })
-                  }
-                />{" "}
-                Other Room / Common Area
-              </label>
-
-              {form.locationType === "other" && (
-                <div
-                  className="input-box"
-                  style={{ marginTop: "10px", display: "flex", gap: "8px" }}
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "8px",
+                }}
+              >
+                <label
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "8px",
+                    fontSize: "14px",
+                  }}
                 >
-                  <MapPin size={18} />
                   <input
-                    type="text"
-                    required
-                    placeholder="Specify room or common area"
-                    value={form.otherLocation}
-                    onChange={(e) =>
-                      setForm({ ...form, otherLocation: e.target.value })
+                    type="radio"
+                    checked={form.locationType === "my-room"}
+                    onChange={() =>
+                      setForm({ ...form, locationType: "my-room" })
                     }
                   />
-                </div>
-              )}
+                  My Room
+                  <span style={{ opacity: 0.7 }}>({userRoom})</span>
+                </label>
+
+                <label
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "8px",
+                    fontSize: "14px",
+                  }}
+                >
+                  <input
+                    type="radio"
+                    checked={form.locationType === "other"}
+                    onChange={() =>
+                      setForm({ ...form, locationType: "other" })
+                    }
+                  />
+                  Other Room / Common Area
+                </label>
+
+                {form.locationType === "other" && (
+                  <div
+                    className="input-box"
+                    style={{
+                      marginTop: "6px",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "8px",
+                    }}
+                  >
+                    <MapPin size={16} />
+                    <input
+                      type="text"
+                      required
+                      placeholder="Specify room or common area"
+                      value={form.otherLocation}
+                      onChange={(e) =>
+                        setForm({ ...form, otherLocation: e.target.value })
+                      }
+                    />
+                  </div>
+                )}
+              </div>
             </div>
 
             {/* SUBMIT */}
