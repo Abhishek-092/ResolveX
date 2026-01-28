@@ -227,7 +227,20 @@ const MyAccount = () => {
         </p>
       </div>
 
-      <button className="btn-secondary">Change</button>
+      <button
+        style={{
+            background: "rgba(255,255,255,0.12)",
+            border: "1px solid rgba(255,255,255,0.25)",
+            color: "#e5e7eb",
+            padding: "8px 14px",
+            borderRadius: "10px",
+            fontSize: "14px",
+            cursor: "pointer",
+        }}
+        >
+        Change
+        </button>
+
     </div>
 
     {/* Google Account */}
