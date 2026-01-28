@@ -36,13 +36,7 @@ const AdminDashboard = () => {
               borderLeft: "4px solid #ef4444",
             }}
           >
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "12px",
-              }}
-            >
+            <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
               <AlertTriangle size={22} color="#ef4444" />
               <div>
                 <strong>Emergency Issues Pending</strong>
@@ -52,13 +46,11 @@ const AdminDashboard = () => {
               </div>
             </div>
 
+            {/* ✅ FIXED PATH */}
             <Link
-              to="/admin/issues"
+              to="/admin/manage-issues"
               className="btn-primary"
-              style={{
-                padding: "10px 16px",
-                fontSize: "14px",
-              }}
+              style={{ padding: "10px 16px", fontSize: "14px" }}
             >
               Review Now
             </Link>
@@ -80,8 +72,10 @@ const AdminDashboard = () => {
               <p style={{ marginTop: "6px", opacity: 0.85 }}>
                 Assign, update, and close reported issues.
               </p>
+
+              {/* ✅ FIXED PATH */}
               <Link
-                to="/admin/issues"
+                to="/admin/manage-issues"
                 style={{
                   marginTop: "14px",
                   display: "inline-block",
@@ -170,13 +164,7 @@ const AdminDashboard = () => {
             </div>
 
             <div className="glass">
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "10px",
-                }}
-              >
+              <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
                 <Clock size={20} />
                 <h3>Operational Notes</h3>
               </div>
