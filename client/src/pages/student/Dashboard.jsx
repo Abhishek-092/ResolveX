@@ -5,6 +5,7 @@ import {
   Megaphone,
   PlusCircle,
   Search,
+  Layers,
 } from "lucide-react";
 
 import Navbar from "../../components/common/Navbar";
@@ -15,7 +16,7 @@ const actionButtonStyle = {
   padding: "8px 14px",
   borderRadius: "10px",
   border: "1px solid rgba(255,255,255,0.25)",
-  background: "rgba(255,255,255,0.08)",
+  background: "rgba(255,255,255,0.1)",
   textDecoration: "none",
   color: "inherit",
 };
@@ -28,7 +29,7 @@ const StudentDashboard = () => {
       <section className="section">
         <div className="container" style={{ maxWidth: "1100px" }}>
           {/* HEADER */}
-          <div style={{ textAlign: "center", marginBottom: "40px" }}>
+          <div style={{ textAlign: "center", marginBottom: "44px" }}>
             <h1 style={{ marginBottom: "8px" }}>Student Dashboard</h1>
             <p style={{ opacity: 0.85 }}>
               Track reported issues, view announcements, and take action.
@@ -43,15 +44,17 @@ const StudentDashboard = () => {
               alignItems: "center",
               justifyContent: "space-between",
               gap: "16px",
-              padding: "18px 22px",
-              marginBottom: "40px",
+              padding: "20px 24px",
+              marginBottom: "42px",
+              background:
+                "linear-gradient(135deg, rgba(56,189,248,0.18), rgba(255,255,255,0.08))",
             }}
           >
             <div>
               <h2 style={{ marginBottom: "4px", fontSize: "18px" }}>
                 Report an Issue
               </h2>
-              <p style={{ opacity: 0.85, fontSize: "14px" }}>
+              <p style={{ opacity: 0.9, fontSize: "14px" }}>
                 Submit an infrastructure issue for resolution.
               </p>
             </div>
@@ -77,8 +80,8 @@ const StudentDashboard = () => {
             style={{
               display: "grid",
               gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-              gap: "20px",
-              marginBottom: "40px",
+              gap: "22px",
+              marginBottom: "44px",
             }}
           >
             {/* My Issues */}
@@ -118,17 +121,40 @@ const StudentDashboard = () => {
             </div>
           </div>
 
-          {/* OVERVIEW */}
+          {/* OVERVIEW / CAMPUS ISSUES */}
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-              gap: "20px",
+              gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+              gap: "22px",
             }}
           >
-            <div className="glass">
-              <h3>Issue Overview</h3>
-              <ul style={{ marginTop: "14px", lineHeight: "1.8", opacity: 0.9 }}>
+            {/* Campus Issues Overview */}
+            <div
+              className="glass"
+              style={{
+                background:
+                  "linear-gradient(135deg, rgba(167,139,250,0.18), rgba(255,255,255,0.08))",
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "10px",
+                }}
+              >
+                <Layers size={22} />
+                <h3>Campus Issues</h3>
+              </div>
+
+              <ul
+                style={{
+                  marginTop: "14px",
+                  lineHeight: "1.8",
+                  opacity: 0.9,
+                }}
+              >
                 <li>
                   <strong>2</strong> issues currently in progress
                 </li>
@@ -139,8 +165,25 @@ const StudentDashboard = () => {
                   <strong>5</strong> issues resolved
                 </li>
               </ul>
+
+              <Link
+                to="/student/issues/feed"
+                style={{
+                  marginTop: "16px",
+                  display: "inline-block",
+                  padding: "9px 14px",
+                  borderRadius: "10px",
+                  border: "1px solid rgba(255,255,255,0.35)",
+                  background: "rgba(255,255,255,0.16)",
+                  textDecoration: "none",
+                  color: "inherit",
+                }}
+              >
+                View all campus issues
+              </Link>
             </div>
 
+            {/* Alerts */}
             <div className="glass">
               <div
                 style={{
