@@ -24,6 +24,7 @@ import IssueDetailAdmin from "./pages/admin/IssueDetail";
 import AdminAnnouncements from "./pages/admin/Announcements";
 import Analytics from "./pages/admin/Analytics";
 import LostAndFoundAdmin from "./pages/admin/LostAndFoundAdmin";
+import AddAnnouncement from "./pages/admin/AddAnnouncement";
 
 
 const AppRoutes = () => {
@@ -55,6 +56,7 @@ const AppRoutes = () => {
       <Route path="/admin/announcements" element={<AdminAnnouncements />} />
       <Route path="/admin/analytics" element={<Analytics />} />
       <Route path="/admin/lost-found" element={<LostAndFoundAdmin />} />
+      <Route path="/admin/announcements/add" element={<AddAnnouncement />} />
     </Routes>
   );
 };
