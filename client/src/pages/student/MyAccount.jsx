@@ -1,19 +1,40 @@
+import { useState } from "react";
 import Navbar from "../../components/common/Navbar";
 import BackButton from "../../components/common/BackButton";
+import { Pencil } from "lucide-react";
 
-const field = {
+const rowStyle = {
   display: "flex",
-  flexDirection: "column",
-  gap: "8px",
+  alignItems: "center",
+  justifyContent: "space-between",
+  gap: "16px",
 };
 
-const inputStyle = {
-  height: "48px",
+const valueStyle = {
+  opacity: 0.9,
   fontSize: "15px",
-  borderRadius: "10px",
+};
+
+const editInputStyle = {
+  height: "42px",
+  fontSize: "14px",
+  borderRadius: "8px",
+  width: "260px",
 };
 
 const MyAccount = () => {
+  const [edit, setEdit] = useState({
+    email: false,
+    phone: false,
+    emergency: false,
+    hostel: false,
+    room: false,
+    blood: false,
+  });
+
+  const toggleEdit = (key) =>
+    setEdit((prev) => ({ ...prev, [key]: !prev[key] }));
+
   return (
     <>
       <Navbar />
@@ -43,23 +64,71 @@ const MyAccount = () => {
           <div className="glass" style={{ padding: "32px", marginBottom: "24px" }}>
             <h3 style={{ marginBottom: "18px" }}>Profile Information</h3>
 
-            <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-              <div style={field}>
-                <label className="label">Full name</label>
-                <input type="text" value="Rahul Sharma" disabled style={inputStyle} />
+            <div style={{ display: "flex", flexDirection: "column", gap: "18px" }}>
+              {/* Name */}
+              <div style={rowStyle}>
+                <strong>Full name</strong>
+                <span style={valueStyle}>Rahul Sharma</span>
               </div>
 
-              <div style={field}>
-                <label className="label">Email address</label>
-                <input type="email" value="rahul@example.com" style={inputStyle} />
-                <span style={{ fontSize: "12px", opacity: 0.65 }}>
-                  Changing this will affect future logins.
-                </span>
+              {/* Email */}
+              <div style={rowStyle}>
+                <strong>Email address</strong>
+                {edit.email ? (
+                  <input defaultValue="rahul@example.com" style={editInputStyle} />
+                ) : (
+                  <span style={valueStyle}>rahul@example.com</span>
+                )}
+                <Pencil
+                  size={16}
+                  style={{ cursor: "pointer", opacity: 0.7 }}
+                  onClick={() => toggleEdit("email")}
+                />
               </div>
 
-              <div style={field}>
-                <label className="label">Phone number (optional)</label>
-                <input type="tel" placeholder="+91 XXXXX XXXXX" style={inputStyle} />
+              {/* Phone */}
+              <div style={rowStyle}>
+                <strong>Phone number</strong>
+                {edit.phone ? (
+                  <input defaultValue="+91 98765 43210" style={editInputStyle} />
+                ) : (
+                  <span style={valueStyle}>+91 98765 43210</span>
+                )}
+                <Pencil
+                  size={16}
+                  style={{ cursor: "pointer", opacity: 0.7 }}
+                  onClick={() => toggleEdit("phone")}
+                />
+              </div>
+
+              {/* Emergency */}
+              <div style={rowStyle}>
+                <strong>Emergency contact (optional)</strong>
+                {edit.emergency ? (
+                  <input placeholder="+91 XXXXX XXXXX" style={editInputStyle} />
+                ) : (
+                  <span style={{ ...valueStyle, opacity: 0.6 }}>Not provided</span>
+                )}
+                <Pencil
+                  size={16}
+                  style={{ cursor: "pointer", opacity: 0.7 }}
+                  onClick={() => toggleEdit("emergency")}
+                />
+              </div>
+
+              {/* Blood Group */}
+              <div style={rowStyle}>
+                <strong>Blood group</strong>
+                {edit.blood ? (
+                  <input defaultValue="B+" style={editInputStyle} />
+                ) : (
+                  <span style={valueStyle}>B+</span>
+                )}
+                <Pencil
+                  size={16}
+                  style={{ cursor: "pointer", opacity: 0.7 }}
+                  onClick={() => toggleEdit("blood")}
+                />
               </div>
             </div>
           </div>
@@ -68,18 +137,33 @@ const MyAccount = () => {
           <div className="glass" style={{ padding: "32px", marginBottom: "24px" }}>
             <h3 style={{ marginBottom: "18px" }}>Campus Details</h3>
 
-            <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-              <div style={field}>
-                <label className="label">Hostel / Block</label>
-                <input type="text" value="Hostel A" style={inputStyle} />
+            <div style={{ display: "flex", flexDirection: "column", gap: "18px" }}>
+              <div style={rowStyle}>
+                <strong>Hostel / Block</strong>
+                {edit.hostel ? (
+                  <input defaultValue="Hostel A" style={editInputStyle} />
+                ) : (
+                  <span style={valueStyle}>Hostel A</span>
+                )}
+                <Pencil
+                  size={16}
+                  style={{ cursor: "pointer", opacity: 0.7 }}
+                  onClick={() => toggleEdit("hostel")}
+                />
               </div>
 
-              <div style={field}>
-                <label className="label">Room number</label>
-                <input type="text" value="214" style={inputStyle} />
-                <span style={{ fontSize: "12px", opacity: 0.65 }}>
-                  Update this if your room changes after reallocation.
-                </span>
+              <div style={rowStyle}>
+                <strong>Room number</strong>
+                {edit.room ? (
+                  <input defaultValue="214" style={editInputStyle} />
+                ) : (
+                  <span style={valueStyle}>214</span>
+                )}
+                <Pencil
+                  size={16}
+                  style={{ cursor: "pointer", opacity: 0.7 }}
+                  onClick={() => toggleEdit("room")}
+                />
               </div>
             </div>
           </div>
