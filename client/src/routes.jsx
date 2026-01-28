@@ -17,6 +17,9 @@ import LostAndFound from "./pages/student/LostAndFound";
 import ReportLost from "./pages/student/ReportLost";
 import ReportFound from "./pages/student/ReportFound";
 import IssuesFeed from "./pages/student/IssuesFeed";
+import MyAccount from "./pages/student/MyAccount";
+
+
 
 const AppRoutes = () => {
   return (
@@ -38,7 +41,7 @@ const AppRoutes = () => {
       <Route path="/student/lost-found/report-lost" element={<ReportLost />} />
       <Route path="/student/lost-found/report-found" element={<ReportFound />} />
   ️    <Route path="student/issues/feed" element={<IssuesFeed />} />
-
+      <Route path="/student/account" element={<MyAccount />} />
 
     </Routes>
   );
