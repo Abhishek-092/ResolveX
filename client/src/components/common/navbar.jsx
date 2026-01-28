@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { LogOut } from "lucide-react";
+import { LogOut, UserCircle } from "lucide-react";
 import logoPrimary from "../../assets/images/logo-primary.svg";
 
 const Navbar = () => {
@@ -51,21 +51,44 @@ const Navbar = () => {
         </Link>
 
         {/* Right Actions */}
-        <button
+        <div
           style={{
             display: "flex",
             alignItems: "center",
-            gap: "8px",
-            background: "transparent",
-            border: "none",
-            color: "#cbd5f5",
-            cursor: "pointer",
-            fontSize: "14px",
+            gap: "18px",
           }}
         >
-          <LogOut size={18} />
-          Logout
-        </button>
+          {/* My Account */}
+          <Link
+            to="/student/account"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              color: "#cbd5f5",
+              textDecoration: "none",
+            }}
+            title="My Account"
+          >
+            <UserCircle size={22} />
+          </Link>
+
+          {/* Logout */}
+          <button
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
+              background: "transparent",
+              border: "none",
+              color: "#cbd5f5",
+              cursor: "pointer",
+              fontSize: "14px",
+            }}
+          >
+            <LogOut size={18} />
+            Logout
+          </button>
+        </div>
       </div>
     </header>
   );
