@@ -73,6 +73,7 @@ const AdminDashboard = () => {
               marginBottom: "40px",
             }}
           >
+            {/* MANAGE ISSUES */}
             <div className="glass">
               <ClipboardList size={26} />
               <h3 style={{ marginTop: "12px" }}>Manage Issues</h3>
@@ -96,6 +97,7 @@ const AdminDashboard = () => {
               </Link>
             </div>
 
+            {/* ANNOUNCEMENTS */}
             <div className="glass">
               <Megaphone size={26} />
               <h3 style={{ marginTop: "12px" }}>Announcements</h3>
@@ -119,6 +121,7 @@ const AdminDashboard = () => {
               </Link>
             </div>
 
+            {/* ANALYTICS */}
             <div className="glass">
               <BarChart3 size={26} />
               <h3 style={{ marginTop: "12px" }}>Analytics</h3>
