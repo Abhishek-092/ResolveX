@@ -16,7 +16,7 @@ const actionButtonStyle = {
   padding: "8px 14px",
   borderRadius: "10px",
   border: "1px solid rgba(255,255,255,0.25)",
-  background: "rgba(255,255,255,0.1)",
+  background: "rgba(255,255,255,0.14)",
   textDecoration: "none",
   color: "inherit",
 };
@@ -47,7 +47,7 @@ const StudentDashboard = () => {
               padding: "20px 24px",
               marginBottom: "42px",
               background:
-                "linear-gradient(135deg, rgba(56,189,248,0.18), rgba(255,255,255,0.08))",
+                "linear-gradient(135deg, rgba(56,189,248,0.22), rgba(255,255,255,0.10))",
             }}
           >
             <div>
@@ -85,7 +85,13 @@ const StudentDashboard = () => {
             }}
           >
             {/* My Issues */}
-            <div className="glass">
+            <div
+              className="glass"
+              style={{
+                background:
+                  "linear-gradient(135deg, rgba(34,197,94,0.20), rgba(255,255,255,0.10))",
+              }}
+            >
               <ClipboardList size={26} />
               <h3 style={{ marginTop: "12px" }}>My Issues</h3>
               <p style={{ marginTop: "6px", opacity: 0.85 }}>
@@ -97,7 +103,13 @@ const StudentDashboard = () => {
             </div>
 
             {/* Announcements */}
-            <div className="glass">
+            <div
+              className="glass"
+              style={{
+                background:
+                  "linear-gradient(135deg, rgba(251,146,60,0.22), rgba(255,255,255,0.10))",
+              }}
+            >
               <Megaphone size={26} />
               <h3 style={{ marginTop: "12px" }}>Announcements</h3>
               <p style={{ marginTop: "6px", opacity: 0.85 }}>
@@ -109,7 +121,13 @@ const StudentDashboard = () => {
             </div>
 
             {/* Lost & Found */}
-            <div className="glass">
+            <div
+              className="glass"
+              style={{
+                background:
+                  "linear-gradient(135deg, rgba(45,212,191,0.22), rgba(255,255,255,0.10))",
+              }}
+            >
               <Search size={26} />
               <h3 style={{ marginTop: "12px" }}>Lost & Found</h3>
               <p style={{ marginTop: "6px", opacity: 0.85 }}>
@@ -129,12 +147,12 @@ const StudentDashboard = () => {
               gap: "22px",
             }}
           >
-            {/* Campus Issues Overview */}
+            {/* Campus Issues (MATCHES IssuesFeed) */}
             <div
               className="glass"
               style={{
                 background:
-                  "linear-gradient(135deg, rgba(167,139,250,0.18), rgba(255,255,255,0.08))",
+                  "linear-gradient(135deg, rgba(167,139,250,0.24), rgba(255,255,255,0.10))",
               }}
             >
               <div
@@ -148,6 +166,10 @@ const StudentDashboard = () => {
                 <h3>Campus Issues</h3>
               </div>
 
+              <p style={{ marginTop: "10px", opacity: 0.85 }}>
+                Publicly reported infrastructure issues visible to all students.
+              </p>
+
               <ul
                 style={{
                   marginTop: "14px",
@@ -156,13 +178,13 @@ const StudentDashboard = () => {
                 }}
               >
                 <li>
-                  <strong>2</strong> issues currently in progress
+                  <strong>2</strong> public issues currently in progress
                 </li>
                 <li>
-                  <strong>1</strong> issue awaiting assignment
+                  <strong>1</strong> newly reported public issue
                 </li>
                 <li>
-                  <strong>5</strong> issues resolved
+                  <strong>5</strong> public issues resolved
                 </li>
               </ul>
 
@@ -174,7 +196,7 @@ const StudentDashboard = () => {
                   padding: "9px 14px",
                   borderRadius: "10px",
                   border: "1px solid rgba(255,255,255,0.35)",
-                  background: "rgba(255,255,255,0.16)",
+                  background: "rgba(255,255,255,0.18)",
                   textDecoration: "none",
                   color: "inherit",
                 }}
@@ -184,7 +206,13 @@ const StudentDashboard = () => {
             </div>
 
             {/* Alerts */}
-            <div className="glass">
+            <div
+              className="glass"
+              style={{
+                background:
+                  "linear-gradient(135deg, rgba(239,68,68,0.18), rgba(255,255,255,0.10))",
+              }}
+            >
               <div
                 style={{
                   display: "flex",
