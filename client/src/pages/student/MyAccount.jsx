@@ -210,6 +210,12 @@ const MyAccount = () => {
           {/* SECURITY */}
           <div className="glass" style={{ padding: "32px" }}>
             <h3 style={{ marginBottom: "18px" }}>Account Security</h3>
+             <div>
+                <strong>Google Account</strong>
+                <p style={{ fontSize: "13px", opacity: 0.75 }}>
+                  Link your Google account for easier login.
+                </p>
+              </div>
 
           <button type="button" className="gsi-material-button">
           <div className="gsi-material-button-content-wrapper">
