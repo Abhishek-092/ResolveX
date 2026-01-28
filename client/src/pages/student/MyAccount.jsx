@@ -26,6 +26,7 @@ const inputStyle = {
   borderRadius: "8px",
   width: "100%",
   maxWidth: "360px",
+  paddingLeft: "12px",
 };
 
 const editIconStyle = {
