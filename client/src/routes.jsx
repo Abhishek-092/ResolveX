@@ -22,6 +22,7 @@ import AdminDashboard from "./pages/admin/Dashboard";
 import ManageIssues from "./pages/admin/ManageIssues";
 import IssueDetailAdmin from "./pages/admin/IssueDetail";
 import AdminAnnouncements from "./pages/admin/Announcements";
+import Analytics from "./pages/admin/Analytics";
 
 
 const AppRoutes = () => {
@@ -51,6 +52,7 @@ const AppRoutes = () => {
       <Route path="/admin/manage-issues" element={<ManageIssues />} />
       <Route path="/admin/manage-issues/:id" element={<IssueDetailAdmin />} />
       <Route path="/admin/announcements" element={<AdminAnnouncements />} />
+      <Route path="/admin/analytics" element={<Analytics />} />
     </Routes>
   );
 };
