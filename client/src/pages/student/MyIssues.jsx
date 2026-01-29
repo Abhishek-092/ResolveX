@@ -85,14 +85,12 @@ const issues = [
 ];
 
 const MyIssues = () => {
-  /* FILTER STATE */
   const [showFilters, setShowFilters] = useState(false);
   const [statusFilters, setStatusFilters] = useState([]);
   const [visibilityFilters, setVisibilityFilters] = useState([]);
 
   const filterRef = useRef(null);
 
-  /* CLOSE DROPDOWN ON OUTSIDE CLICK */
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (filterRef.current && !filterRef.current.contains(e.target)) {
@@ -100,10 +98,10 @@ const MyIssues = () => {
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    return () =>
+      document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  /* FILTER LOGIC */
   const filteredIssues = issues.filter((issue) => {
     const statusOk =
       statusFilters.length === 0 || statusFilters.includes(issue.status);
@@ -148,25 +146,22 @@ const MyIssues = () => {
               My Issues
             </h1>
 
-            {/* FILTER ICON */}
+            {/* FILTER */}
             <div style={{ position: "relative" }} ref={filterRef}>
               <button
                 onClick={() => setShowFilters((v) => !v)}
                 style={{
                   background: "rgba(255,255,255,0.14)",
                   border: "1px solid rgba(255,255,255,0.25)",
-                  backdropFilter: "blur(10px)",
                   borderRadius: "10px",
                   padding: "8px",
                   cursor: "pointer",
                   color: "#e5e7eb",
                 }}
-                aria-label="Filter issues"
               >
                 <Filter size={18} />
               </button>
 
-              {/* FILTER DROPDOWN */}
               {showFilters && (
                 <div
                   className="glass"
@@ -175,6 +170,7 @@ const MyIssues = () => {
                     right: 0,
                     top: "48px",
                     minWidth: "220px",
+                    padding: "14px",
                     zIndex: 10,
                   }}
                 >
@@ -200,7 +196,7 @@ const MyIssues = () => {
                     </label>
                   ))}
 
-                  <hr style={{ margin: "10px 0", opacity: 0.2 }} />
+                  <hr style={{ margin: "12px 0", opacity: 0.25 }} />
 
                   <strong>Visibility</strong>
                   {["public", "private"].map((v) => (
@@ -236,7 +232,7 @@ const MyIssues = () => {
             Track the status of issues you have reported.
           </p>
 
-          {/* ISSUES LIST */}
+          {/* LIST */}
           <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
             {filteredIssues.length === 0 ? (
               <div className="glass">
@@ -259,23 +255,29 @@ const MyIssues = () => {
                       style={{
                         display: "flex",
                         gap: "16px",
-                        alignItems: "flex-start",
+                        padding: "16px 18px",
+                        background:
+                          "linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.04))",
                       }}
                     >
-                      <Icon
-                        size={18}
-                        color={categoryColors[issue.category]}
-                        style={{ marginTop: "4px" }}
-                      />
+                      {/* ICON */}
+                      <div
+                        style={{
+                          background: `${categoryColors[issue.category]}22`,
+                          borderRadius: "10px",
+                          padding: "8px",
+                          height: "fit-content",
+                        }}
+                      >
+                        <Icon
+                          size={18}
+                          color={categoryColors[issue.category]}
+                        />
+                      </div>
 
+                      {/* CONTENT */}
                       <div style={{ flex: 1 }}>
-                        <div
-                          style={{
-                            fontSize: "16px",
-                            fontWeight: 600,
-                            color: "#e5e7eb",
-                          }}
-                        >
+                        <div style={{ fontWeight: 600, fontSize: "16px" }}>
                           {issue.category}
                         </div>
 
@@ -305,6 +307,7 @@ const MyIssues = () => {
                         )}
                       </div>
 
+                      {/* META */}
                       <div
                         style={{
                           display: "flex",
