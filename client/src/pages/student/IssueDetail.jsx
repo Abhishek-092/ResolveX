@@ -87,13 +87,13 @@ const IssueDetail = () => {
 
       <section className="section">
         <div className="container" style={{ maxWidth: "900px" }}>
-          {/* HEADER — FIXED ALIGNMENT */}
+          {/* HEADER */}
           <div
             style={{
               display: "flex",
               alignItems: "center",
               gap: "14px",
-              marginBottom: "18px",
+              marginBottom: "24px",
             }}
           >
             <BackButton />
@@ -101,38 +101,84 @@ const IssueDetail = () => {
           </div>
 
           {/* SUMMARY */}
-          <div className="glass" style={{ marginBottom: "24px" }}>
+          <div
+            className="glass"
+            style={{
+              marginBottom: "28px",
+              padding: "22px 24px",
+            }}
+          >
             <div
               style={{
                 display: "flex",
                 justifyContent: "space-between",
-                gap: "16px",
+                gap: "20px",
+                flexWrap: "wrap",
               }}
             >
-              <div>
-                <h2 style={{ margin: "0 0 6px" }}>{issue.title}</h2>
-                <p style={{ opacity: 0.85 }}>{issue.description}</p>
+              <div style={{ flex: 1 }}>
+                <h2 style={{ margin: "0 0 8px" }}>{issue.title}</h2>
+                <p style={{ opacity: 0.9 }}>{issue.description}</p>
 
-                <p style={{ fontSize: "14px", marginTop: "10px" }}>
-                  <strong>Location:</strong> {issue.location}
-                </p>
-                <p style={{ fontSize: "14px" }}>
-                  <strong>Reported:</strong> {issue.reportedOn}
-                </p>
+                <div
+                  style={{
+                    marginTop: "14px",
+                    fontSize: "14px",
+                    opacity: 0.85,
+                    lineHeight: 1.6,
+                  }}
+                >
+                  <div>
+                    <strong>Location:</strong> {issue.location}
+                  </div>
+                  <div>
+                    <strong>Reported:</strong> {issue.reportedOn}
+                  </div>
+                </div>
               </div>
 
-              <div style={{ textAlign: "right" }}>
-                <span className="badge">{issue.priority}</span>
-                <br />
-                <span className="badge secondary">{issue.status}</span>
+              {/* META */}
+              <div
+                style={{
+                  minWidth: "160px",
+                  textAlign: "right",
+                }}
+              >
+                <span
+                  style={{
+                    display: "inline-block",
+                    padding: "6px 14px",
+                    borderRadius: "999px",
+                    fontSize: "12px",
+                    fontWeight: 600,
+                    background: "#f59e0b",
+                    color: "#fff",
+                  }}
+                >
+                  {issue.priority}
+                </span>
                 <br />
                 <span
+                  style={{
+                    display: "inline-block",
+                    marginTop: "8px",
+                    padding: "6px 14px",
+                    borderRadius: "999px",
+                    fontSize: "12px",
+                    background: "rgba(255,255,255,0.18)",
+                  }}
+                >
+                  {issue.status}
+                </span>
+
+                <div
                   style={{
                     display: "inline-flex",
                     alignItems: "center",
                     gap: "6px",
-                    marginTop: "8px",
-                    fontSize: "14px",
+                    marginTop: "10px",
+                    fontSize: "13px",
+                    opacity: 0.85,
                   }}
                 >
                   {issue.visibility === "public" ? (
@@ -144,33 +190,36 @@ const IssueDetail = () => {
                       <EyeOff size={14} /> Private
                     </>
                   )}
-                </span>
+                </div>
               </div>
             </div>
           </div>
 
           {/* TIMELINE */}
-          <div className="glass" style={{ marginBottom: "24px" }}>
-            <h3 style={{ marginTop: 0 }}>Issue Timeline</h3>
+          <div className="glass" style={{ marginBottom: "28px", padding: "22px" }}>
+            <h3 style={{ marginTop: 0, marginBottom: "16px" }}>
+              Issue Timeline
+            </h3>
 
             {issue.timeline.map((step, idx) => (
               <div
                 key={idx}
                 style={{
                   display: "flex",
-                  alignItems: "center",
-                  gap: "12px",
+                  alignItems: "flex-start",
+                  gap: "14px",
                   opacity: step.done ? 1 : 0.45,
-                  marginBottom: "10px",
+                  marginBottom: "14px",
                 }}
               >
                 {step.done ? (
-                  <CheckCircle2 size={18} />
+                  <CheckCircle2 size={18} color="#22c55e" />
                 ) : (
                   <Clock size={18} />
                 )}
+
                 <div>
-                  <strong>{step.label}</strong>
+                  <div style={{ fontWeight: 600 }}>{step.label}</div>
                   {step.time && (
                     <div style={{ fontSize: "13px", opacity: 0.7 }}>
                       {step.time}
@@ -182,10 +231,10 @@ const IssueDetail = () => {
           </div>
 
           {/* REMARKS */}
-          <div className="glass" style={{ marginBottom: "24px" }}>
+          <div className="glass" style={{ marginBottom: "28px", padding: "22px" }}>
             <h3 style={{ marginTop: 0 }}>Management Remarks</h3>
             {issue.remarks ? (
-              <p>{issue.remarks}</p>
+              <p style={{ opacity: 0.9 }}>{issue.remarks}</p>
             ) : (
               <p style={{ opacity: 0.6 }}>No remarks added yet.</p>
             )}
@@ -193,17 +242,32 @@ const IssueDetail = () => {
 
           {/* COMMENTS */}
           {issue.visibility === "public" && (
-            <div className="glass">
-              <h3 style={{ marginTop: 0 }}>
-                <MessageSquare size={18} /> Community Comments
+            <div className="glass" style={{ padding: "22px" }}>
+              <h3
+                style={{
+                  marginTop: 0,
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "8px",
+                }}
+              >
+                <MessageSquare size={18} />
+                Community Comments
               </h3>
 
               {issue.comments.length === 0 ? (
                 <p style={{ opacity: 0.6 }}>No comments yet.</p>
               ) : (
                 issue.comments.map((c) => (
-                  <div key={c.id} style={{ marginBottom: "12px" }}>
-                    <p>{c.text}</p>
+                  <div
+                    key={c.id}
+                    style={{
+                      marginTop: "14px",
+                      paddingTop: "12px",
+                      borderTop: "1px solid rgba(255,255,255,0.12)",
+                    }}
+                  >
+                    <p style={{ marginBottom: "4px" }}>{c.text}</p>
                     <small style={{ opacity: 0.6 }}>{c.time}</small>
                   </div>
                 ))
