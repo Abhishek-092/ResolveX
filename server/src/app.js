@@ -14,3 +14,9 @@ module.exports = app;
 const issueRoutes = require("./routes/issue.routes");
 
 app.use("/issues", issueRoutes);
+
+// ADMIN ROUTES
+const adminRoutes = require("./routes/admin.routes");
+
+app.use("/admin", adminRoutes);
+
