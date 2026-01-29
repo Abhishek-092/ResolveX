@@ -31,7 +31,7 @@ const AdminDashboard = () => {
       <section className="section">
         <div className="container" style={{ maxWidth: "1100px" }}>
 
-          {/* HEADER — NO WRAPPING BOX */}
+          {/* HEADER */}
           <div style={{ marginBottom: "42px" }}>
             <h1 style={{ marginBottom: "10px", fontSize: "28px" }}>
               Management Dashboard
