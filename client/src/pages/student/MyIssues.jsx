@@ -235,7 +235,7 @@ const MyIssues = () => {
             Track the status of issues you have reported.
           </p>
 
-          {/* ISSUES LIST */}
+          {/* ISSUE LIST */}
           <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
             {filteredIssues.map((issue) => {
               const Icon = iconMap[issue.category];
@@ -244,9 +244,16 @@ const MyIssues = () => {
                 <Link
                   key={issue.id}
                   to={`/student/issues/${issue.id}`}
-                  style={{ textDecoration: "none", color: "inherit" }}
+                  style={{ textDecoration: "none", color: "inherit" }} // ✅ FIX
                 >
-                  <div className="glass" style={{ display: "flex", gap: "16px" }}>
+                  <div
+                    className="glass"
+                    style={{
+                      display: "flex",
+                      gap: "16px",
+                      transition: "transform 0.15s ease",
+                    }}
+                  >
                     <Icon
                       size={18}
                       color={categoryColors[issue.category]}
