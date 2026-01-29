@@ -17,40 +17,44 @@ const AdminDashboard = () => {
       <section className="section">
         <div className="container" style={{ maxWidth: "1100px" }}>
           {/* HEADER */}
-          <div style={{ marginBottom: "36px" }}>
-            <h1 style={{ marginBottom: "8px" }}>Management Dashboard</h1>
-            <p style={{ opacity: 0.85 }}>
-              Monitor campus issues, announcements, and operational health.
+          <div style={{ marginBottom: "42px" }}>
+            <h1 style={{ marginBottom: "6px" }}>Management Dashboard</h1>
+            <p style={{ opacity: 0.85, maxWidth: "620px" }}>
+              Monitor campus issues, announcements, and overall operational
+              health from a single view.
             </p>
           </div>
 
-          {/* ALERT STRIP */}
+          {/* EMERGENCY STRIP */}
           <div
             className="glass"
             style={{
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
-              padding: "18px 22px",
-              marginBottom: "40px",
+              padding: "20px 24px",
+              marginBottom: "44px",
               borderLeft: "4px solid #ef4444",
+              background:
+                "linear-gradient(90deg, rgba(239,68,68,0.12), rgba(255,255,255,0.04))",
             }}
           >
-            <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-              <AlertTriangle size={22} color="#ef4444" />
+            <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
+              <AlertTriangle size={24} color="#ef4444" />
               <div>
-                <strong>Emergency Issues Pending</strong>
+                <strong style={{ fontSize: "15px" }}>
+                  Emergency Issues Pending
+                </strong>
                 <p style={{ fontSize: "14px", opacity: 0.85 }}>
                   2 emergency issues require immediate action.
                 </p>
               </div>
             </div>
 
-            {/* ✅ FIXED PATH */}
             <Link
               to="/admin/manage-issues"
               className="btn-primary"
-              style={{ padding: "10px 16px", fontSize: "14px" }}
+              style={{ padding: "10px 18px", fontSize: "14px" }}
             >
               Review Now
             </Link>
@@ -61,81 +65,82 @@ const AdminDashboard = () => {
             style={{
               display: "grid",
               gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-              gap: "20px",
-              marginBottom: "40px",
+              gap: "22px",
+              marginBottom: "44px",
             }}
           >
             {/* MANAGE ISSUES */}
             <div className="glass">
-              <ClipboardList size={26} />
-              <h3 style={{ marginTop: "12px" }}>Manage Issues</h3>
+              <ClipboardList size={26} color="#38bdf8" />
+              <h3 style={{ marginTop: "14px" }}>Manage Issues</h3>
               <p style={{ marginTop: "6px", opacity: 0.85 }}>
                 Assign, update, and close reported issues.
               </p>
 
-              {/* ✅ FIXED PATH */}
               <Link
                 to="/admin/manage-issues"
                 style={{
-                  marginTop: "14px",
+                  marginTop: "16px",
                   display: "inline-block",
-                  padding: "8px 14px",
+                  padding: "9px 16px",
                   borderRadius: "10px",
                   border: "1px solid rgba(255,255,255,0.25)",
-                  background: "rgba(255,255,255,0.08)",
+                  background: "rgba(255,255,255,0.1)",
                   textDecoration: "none",
                   color: "inherit",
                 }}
               >
-                Open Issue Queue
+                Open Issue Queue →
               </Link>
             </div>
 
             {/* ANNOUNCEMENTS */}
             <div className="glass">
-              <Megaphone size={26} />
-              <h3 style={{ marginTop: "12px" }}>Announcements</h3>
+              <Megaphone size={26} color="#a78bfa" />
+              <h3 style={{ marginTop: "14px" }}>Announcements</h3>
               <p style={{ marginTop: "6px", opacity: 0.85 }}>
                 Post and manage student announcements.
               </p>
+
               <Link
                 to="/admin/announcements"
                 style={{
-                  marginTop: "14px",
+                  marginTop: "16px",
                   display: "inline-block",
-                  padding: "8px 14px",
+                  padding: "9px 16px",
                   borderRadius: "10px",
                   border: "1px solid rgba(255,255,255,0.25)",
-                  background: "rgba(255,255,255,0.08)",
+                  background: "rgba(255,255,255,0.1)",
                   textDecoration: "none",
                   color: "inherit",
                 }}
               >
-                Manage Announcements
+                Manage Announcements →
               </Link>
             </div>
 
             {/* ANALYTICS */}
             <div className="glass">
-              <BarChart3 size={26} />
-              <h3 style={{ marginTop: "12px" }}>Analytics</h3>
+              <BarChart3 size={26} color="#22c55e" />
+              <h3 style={{ marginTop: "14px" }}>Analytics</h3>
               <p style={{ marginTop: "6px", opacity: 0.85 }}>
                 View trends, response times, and performance metrics.
               </p>
+
               <Link
                 to="/admin/analytics"
                 style={{
-                  marginTop: "14px",
+                  marginTop: "16px",
                   display: "inline-block",
-                  padding: "8px 14px",
+                  padding: "9px 16px",
                   borderRadius: "10px",
                   border: "1px solid rgba(255,255,255,0.25)",
-                  background: "rgba(255,255,255,0.08)",
+                  background: "rgba(255,255,255,0.1)",
                   textDecoration: "none",
                   color: "inherit",
                 }}
               >
-                View Analytics
+                View Analytics →
               </Link>
             </div>
           </div>
@@ -145,12 +150,12 @@ const AdminDashboard = () => {
             style={{
               display: "grid",
               gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-              gap: "20px",
+              gap: "22px",
             }}
           >
             <div className="glass">
               <h3>Issue Summary</h3>
-              <ul style={{ marginTop: "14px", lineHeight: "1.9", opacity: 0.9 }}>
+              <ul style={{ marginTop: "16px", lineHeight: "1.9", opacity: 0.9 }}>
                 <li>
                   <strong>14</strong> new issues today
                 </li>
@@ -165,11 +170,11 @@ const AdminDashboard = () => {
 
             <div className="glass">
               <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                <Clock size={20} />
+                <Clock size={20} color="#facc15" />
                 <h3>Operational Notes</h3>
               </div>
 
-              <p style={{ marginTop: "12px", opacity: 0.9 }}>
+              <p style={{ marginTop: "14px", opacity: 0.9 }}>
                 Peak issue reporting observed between 7 PM – 10 PM.
                 <br />
                 Consider increasing night maintenance staff.
