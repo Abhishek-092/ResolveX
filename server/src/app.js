@@ -20,3 +20,9 @@ const adminRoutes = require("./routes/admin.routes");
 
 app.use("/admin", adminRoutes);
 
+// ANNOUNCEMENT ROUTES
+const announcementRoutes = require("./routes/announcement.routes");
+
+app.use("/announcements", announcementRoutes);
+
+
