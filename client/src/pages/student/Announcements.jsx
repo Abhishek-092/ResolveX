@@ -47,18 +47,17 @@ const StudentAnnouncements = () => {
             }}
           >
             <h1
-            style={{
+              style={{
                 display: "flex",
                 alignItems: "center",
                 gap: "14px",
                 margin: 0,
                 marginBottom: "10px",
-            }}
+              }}
             >
-            <BackButton />
-            Announcements
+              <BackButton />
+              Announcements
             </h1>
-
           </div>
 
           <p style={{ marginBottom: "28px", opacity: 0.85 }}>
@@ -81,7 +80,16 @@ const StudentAnnouncements = () => {
               }}
             >
               {announcements.map((a) => (
-                <div key={a.id} className="glass">
+                <div
+                  key={a.id}
+                  className="glass"
+                  style={{
+                    padding: "18px 20px",
+                    background:
+                      "linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.04))",
+                  }}
+                >
+                  {/* TITLE */}
                   <div
                     style={{
                       display: "flex",
@@ -90,20 +98,22 @@ const StudentAnnouncements = () => {
                       marginBottom: "6px",
                     }}
                   >
-                    <Megaphone size={18} />
+                    <Megaphone size={18} color="#22d3ee" />
                     <h3 style={{ margin: 0 }}>{a.title}</h3>
                   </div>
 
-                  <p style={{ margin: "6px 0", opacity: 0.9 }}>
+                  {/* MESSAGE */}
+                  <p style={{ margin: "6px 0", opacity: 0.92 }}>
                     {a.message}
                   </p>
 
+                  {/* META */}
                   <div
                     style={{
                       display: "flex",
                       justifyContent: "space-between",
                       alignItems: "center",
-                      marginTop: "10px",
+                      marginTop: "12px",
                       fontSize: "13px",
                       opacity: 0.75,
                     }}
@@ -119,7 +129,18 @@ const StudentAnnouncements = () => {
                       {a.date}
                     </span>
 
-                    <span>Target: {a.target}</span>
+                    <span
+                      style={{
+                        padding: "4px 10px",
+                        borderRadius: "999px",
+                        fontSize: "12px",
+                        background: "rgba(34,211,238,0.15)",
+                        border: "1px solid rgba(34,211,238,0.35)",
+                        color: "#e5faff",
+                      }}
+                    >
+                      {a.target}
+                    </span>
                   </div>
                 </div>
               ))}
