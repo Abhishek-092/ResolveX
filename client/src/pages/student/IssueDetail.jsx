@@ -16,7 +16,7 @@ import {
 import Navbar from "../../components/common/Navbar";
 import BackButton from "../../components/common/BackButton";
 
-/* SAME COLOR SYSTEM AS MyIssues */
+/* SAME SYSTEM AS MyIssues */
 const categoryColors = {
   Plumbing: "#38bdf8",
   Electrical: "#facc15",
@@ -93,31 +93,30 @@ const IssueDetail = () => {
 
       <section className="section">
         <div className="container" style={{ maxWidth: "900px" }}>
-          {/* HEADER (same feel as MyIssues) */}
+          {/* HEADER */}
           <div
             style={{
               display: "flex",
               alignItems: "center",
               gap: "14px",
-              marginBottom: "28px",
+              marginBottom: "24px",
             }}
           >
             <BackButton />
             <h1 style={{ margin: 0 }}>Issue Details</h1>
           </div>
 
-          {/* MAIN SUMMARY — LARGE MyIssues CARD */}
+          {/* ONE CONTINUOUS CARD */}
           <div
             className="glass"
             style={{
               padding: "22px",
-              marginBottom: "28px",
               background:
                 "linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.04))",
             }}
           >
+            {/* MAIN SUMMARY ROW */}
             <div style={{ display: "flex", gap: "16px" }}>
-              {/* ICON CHIP */}
               <div
                 style={{
                   background: `${accent}22`,
@@ -129,14 +128,13 @@ const IssueDetail = () => {
                 <Icon size={22} color={accent} />
               </div>
 
-              {/* CONTENT */}
               <div style={{ flex: 1 }}>
                 <h2 style={{ margin: "0 0 6px" }}>{issue.title}</h2>
                 <p style={{ opacity: 0.9 }}>{issue.description}</p>
 
                 <div
                   style={{
-                    marginTop: "12px",
+                    marginTop: "10px",
                     fontSize: "14px",
                     opacity: 0.8,
                   }}
@@ -150,7 +148,6 @@ const IssueDetail = () => {
                 </div>
               </div>
 
-              {/* META */}
               <div
                 style={{
                   display: "flex",
@@ -183,14 +180,17 @@ const IssueDetail = () => {
                 </span>
               </div>
             </div>
-          </div>
 
-          {/* TIMELINE */}
-          <div className="glass" style={{ padding: "22px", marginBottom: "28px" }}>
-            <h3 style={{ marginTop: 0, marginBottom: "16px" }}>
-              Issue Timeline
-            </h3>
+            {/* DIVIDER */}
+            <div
+              style={{
+                height: "1px",
+                background: "rgba(255,255,255,0.12)",
+                margin: "22px 0",
+              }}
+            />
 
+            {/* TIMELINE — SAME CARD STYLE */}
             {issue.timeline.map((step, idx) => (
               <div
                 key={idx}
@@ -217,52 +217,71 @@ const IssueDetail = () => {
                 </div>
               </div>
             ))}
-          </div>
 
-          {/* REMARKS */}
-          <div className="glass" style={{ padding: "22px", marginBottom: "28px" }}>
-            <h3 style={{ marginTop: 0 }}>Management Remarks</h3>
-            {issue.remarks ? (
-              <p style={{ opacity: 0.9 }}>{issue.remarks}</p>
-            ) : (
-              <p style={{ opacity: 0.6 }}>No remarks added yet.</p>
-            )}
-          </div>
+            {/* DIVIDER */}
+            <div
+              style={{
+                height: "1px",
+                background: "rgba(255,255,255,0.12)",
+                margin: "22px 0",
+              }}
+            />
 
-          {/* COMMENTS */}
-          {issue.visibility === "public" && (
-            <div className="glass" style={{ padding: "22px" }}>
-              <h3
-                style={{
-                  marginTop: 0,
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "8px",
-                }}
-              >
-                <MessageSquare size={18} />
-                Community Comments
-              </h3>
+            {/* REMARKS */}
+            <div>
+              <strong>Management Remarks</strong>
+              <p style={{ marginTop: "6px", opacity: 0.9 }}>
+                {issue.remarks || "No remarks added yet."}
+              </p>
+            </div>
 
-              {issue.comments.length === 0 ? (
-                <p style={{ opacity: 0.6 }}>No comments yet.</p>
-              ) : (
-                issue.comments.map((c) => (
-                  <div
-                    key={c.id}
+            {/* COMMENTS */}
+            {issue.visibility === "public" && (
+              <>
+                <div
+                  style={{
+                    height: "1px",
+                    background: "rgba(255,255,255,0.12)",
+                    margin: "22px 0",
+                  }}
+                />
+
+                <div>
+                  <strong
                     style={{
-                      marginTop: "14px",
-                      paddingTop: "12px",
-                      borderTop: "1px solid rgba(255,255,255,0.12)",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "8px",
                     }}
                   >
-                    <p style={{ marginBottom: "4px" }}>{c.text}</p>
-                    <small style={{ opacity: 0.6 }}>{c.time}</small>
-                  </div>
-                ))
-              )}
-            </div>
-          )}
+                    <MessageSquare size={16} />
+                    Community Comments
+                  </strong>
+
+                  {issue.comments.length === 0 ? (
+                    <p style={{ opacity: 0.6, marginTop: "8px" }}>
+                      No comments yet.
+                    </p>
+                  ) : (
+                    issue.comments.map((c) => (
+                      <div
+                        key={c.id}
+                        style={{
+                          marginTop: "12px",
+                          paddingTop: "10px",
+                          borderTop:
+                            "1px solid rgba(255,255,255,0.12)",
+                        }}
+                      >
+                        <p style={{ marginBottom: "4px" }}>{c.text}</p>
+                        <small style={{ opacity: 0.6 }}>{c.time}</small>
+                      </div>
+                    ))
+                  )}
+                </div>
+              </>
+            )}
+          </div>
         </div>
       </section>
     </>
