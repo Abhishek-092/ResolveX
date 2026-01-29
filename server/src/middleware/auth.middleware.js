@@ -15,12 +15,12 @@ exports.protect = async (req, res, next) => {
 
     const user = await User.findById(decoded.id).select("-password");
     if (!user) {
-      return res.status(401).json({ message: "User no longer exists" });
+      return res.status(401).json({ message: "User not found" });
     }
 
-    req.user = user; // role comes from DB
+    req.user = user; // contains role from DB
     next();
-  } catch (error) {
+  } catch (err) {
     return res.status(401).json({ message: "Invalid token" });
   }
 };
