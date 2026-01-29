@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import {
   Droplets,
   Zap,
@@ -96,117 +97,118 @@ const ManageIssues = () => {
               const Icon = categoryIcon[issue.category] || AlertTriangle;
 
               return (
-                <div
+                <Link
                   key={issue.id}
-                  className="glass"
-                  style={{
-                    padding: "20px",
-                    borderLeft: `4px solid ${priorityColor[issue.priority]}`,
-                  }}
+                  to={`/admin/manage-issues/${issue.id}`}
+                  style={{ textDecoration: "none", color: "inherit" }}
                 >
                   <div
+                    className="glass"
                     style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      gap: "18px",
+                      padding: "20px",
+                      borderLeft: `4px solid ${priorityColor[issue.priority]}`,
+                      cursor: "pointer",
                     }}
                   >
-                    {/* LEFT */}
-                    <div style={{ flex: 1 }}>
-                      <div
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          gap: "10px",
-                          marginBottom: "6px",
-                        }}
-                      >
-                        <Icon size={18} />
-                        <strong>{issue.category}</strong>
-
-                        {issue.priority === "Emergency" && (
-                          <span
-                            style={{
-                              background: "#ef4444",
-                              color: "#fff",
-                              padding: "4px 10px",
-                              borderRadius: "999px",
-                              fontSize: "11px",
-                              fontWeight: 600,
-                            }}
-                          >
-                            EMERGENCY
-                          </span>
-                        )}
-                      </div>
-
-                      <p style={{ fontSize: "14px", opacity: 0.9 }}>
-                        {issue.description}
-                      </p>
-
-                      <p
-                        style={{
-                          fontSize: "13px",
-                          opacity: 0.75,
-                          marginTop: "6px",
-                        }}
-                      >
-                        {issue.location} · Reported on {issue.date}
-                      </p>
-                    </div>
-
-                    {/* RIGHT */}
                     <div
                       style={{
                         display: "flex",
-                        flexDirection: "column",
-                        alignItems: "flex-end",
-                        gap: "10px",
-                        minWidth: "160px",
+                        justifyContent: "space-between",
+                        gap: "18px",
                       }}
                     >
-                      <span
-                        style={{
-                          background: priorityColor[issue.priority],
-                          color: "#fff",
-                          padding: "6px 14px",
-                          borderRadius: "999px",
-                          fontSize: "12px",
-                          fontWeight: 600,
-                        }}
-                      >
-                        {issue.priority}
-                      </span>
+                      {/* LEFT */}
+                      <div style={{ flex: 1 }}>
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "10px",
+                            marginBottom: "6px",
+                          }}
+                        >
+                          <Icon size={18} />
+                          <strong>{issue.category}</strong>
 
-                      <span
-                        style={{
-                          background: statusColor[issue.status],
-                          color: "#fff",
-                          padding: "6px 14px",
-                          borderRadius: "999px",
-                          fontSize: "12px",
-                        }}
-                      >
-                        {issue.status}
-                      </span>
+                          {issue.priority === "Emergency" && (
+                            <span
+                              style={{
+                                background: "#ef4444",
+                                color: "#fff",
+                                padding: "4px 10px",
+                                borderRadius: "999px",
+                                fontSize: "11px",
+                                fontWeight: 600,
+                              }}
+                            >
+                              EMERGENCY
+                            </span>
+                          )}
+                        </div>
 
-                      <button
+                        <p style={{ fontSize: "14px", opacity: 0.9 }}>
+                          {issue.description}
+                        </p>
+
+                        <p
+                          style={{
+                            fontSize: "13px",
+                            opacity: 0.75,
+                            marginTop: "6px",
+                          }}
+                        >
+                          {issue.location} · Reported on {issue.date}
+                        </p>
+                      </div>
+
+                      {/* RIGHT */}
+                      <div
                         style={{
-                          marginTop: "6px",
-                          fontSize: "13px",
-                          background: "transparent",
-                          border: "1px solid rgba(255,255,255,0.25)",
-                          padding: "6px 12px",
-                          borderRadius: "8px",
-                          cursor: "pointer",
-                          color: "#e5e7eb",
+                          display: "flex",
+                          flexDirection: "column",
+                          alignItems: "flex-end",
+                          gap: "10px",
+                          minWidth: "160px",
                         }}
                       >
-                        View Details
-                      </button>
+                        <span
+                          style={{
+                            background: priorityColor[issue.priority],
+                            color: "#fff",
+                            padding: "6px 14px",
+                            borderRadius: "999px",
+                            fontSize: "12px",
+                            fontWeight: 600,
+                          }}
+                        >
+                          {issue.priority}
+                        </span>
+
+                        <span
+                          style={{
+                            background: statusColor[issue.status],
+                            color: "#fff",
+                            padding: "6px 14px",
+                            borderRadius: "999px",
+                            fontSize: "12px",
+                          }}
+                        >
+                          {issue.status}
+                        </span>
+
+                        <span
+                          style={{
+                            fontSize: "13px",
+                            opacity: 0.8,
+                            marginTop: "6px",
+                          }}
+                        >
+                          View Details →
+                        </span>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </Link>
               );
             })}
           </div>
