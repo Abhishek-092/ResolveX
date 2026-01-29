@@ -16,7 +16,7 @@ import {
 import Navbar from "../../components/common/Navbar";
 import BackButton from "../../components/common/BackButton";
 
-/* COLORS — UNCHANGED */
+/* COLORS */
 const categoryColors = {
   Plumbing: "#38bdf8",
   Electrical: "#facc15",
@@ -50,7 +50,7 @@ const iconMap = {
   Other: AlertCircle,
 };
 
-/* MOCK ISSUES — UNCHANGED */
+/* MOCK ISSUES */
 const issues = [
   {
     id: 1,
@@ -170,7 +170,6 @@ const MyIssues = () => {
                     right: 0,
                     top: "48px",
                     minWidth: "220px",
-                    padding: "14px",
                     zIndex: 10,
                   }}
                 >
@@ -189,14 +188,18 @@ const MyIssues = () => {
                         type="checkbox"
                         checked={statusFilters.includes(status)}
                         onChange={() =>
-                          toggleFilter(status, statusFilters, setStatusFilters)
+                          toggleFilter(
+                            status,
+                            statusFilters,
+                            setStatusFilters
+                          )
                         }
                       />
                       {status}
                     </label>
                   ))}
 
-                  <hr style={{ margin: "12px 0", opacity: 0.25 }} />
+                  <hr style={{ margin: "10px 0", opacity: 0.2 }} />
 
                   <strong>Visibility</strong>
                   {["public", "private"].map((v) => (
@@ -232,137 +235,109 @@ const MyIssues = () => {
             Track the status of issues you have reported.
           </p>
 
-          {/* LIST */}
+          {/* ISSUES LIST */}
           <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-            {filteredIssues.length === 0 ? (
-              <div className="glass">
-                <p style={{ opacity: 0.7 }}>
-                  No issues match the selected filters.
-                </p>
-              </div>
-            ) : (
-              filteredIssues.map((issue) => {
-                const Icon = iconMap[issue.category];
+            {filteredIssues.map((issue) => {
+              const Icon = iconMap[issue.category];
 
-                return (
-                  <Link
-                    key={issue.id}
-                    to={`/student/issues/${issue.id}`}
-                    style={{ textDecoration: "none" }}
-                  >
-                    <div
-                      className="glass"
-                      style={{
-                        display: "flex",
-                        gap: "16px",
-                        padding: "16px 18px",
-                        background:
-                          "linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.04))",
-                      }}
-                    >
-                      {/* ICON */}
-                      <div
-                        style={{
-                          background: `${categoryColors[issue.category]}22`,
-                          borderRadius: "10px",
-                          padding: "8px",
-                          height: "fit-content",
-                        }}
-                      >
-                        <Icon
-                          size={18}
-                          color={categoryColors[issue.category]}
-                        />
+              return (
+                <Link
+                  key={issue.id}
+                  to={`/student/issues/${issue.id}`}
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
+                  <div className="glass" style={{ display: "flex", gap: "16px" }}>
+                    <Icon
+                      size={18}
+                      color={categoryColors[issue.category]}
+                      style={{ marginTop: "4px" }}
+                    />
+
+                    <div style={{ flex: 1 }}>
+                      <div style={{ fontSize: "16px", fontWeight: 600 }}>
+                        {issue.category}
                       </div>
 
-                      {/* CONTENT */}
-                      <div style={{ flex: 1 }}>
-                        <div style={{ fontWeight: 600, fontSize: "16px" }}>
-                          {issue.category}
-                        </div>
+                      <p style={{ fontSize: "14px", opacity: 0.9 }}>
+                        {issue.description}
+                      </p>
 
-                        <p style={{ fontSize: "14px", opacity: 0.9 }}>
-                          {issue.description}
-                        </p>
+                      <p style={{ fontSize: "12px", opacity: 0.7 }}>
+                        Reported on {issue.date}
+                      </p>
 
-                        <p style={{ fontSize: "12px", opacity: 0.7 }}>
-                          Reported on {issue.date}
-                        </p>
-
-                        {issue.visibility === "public" && (
-                          <div
-                            style={{
-                              display: "flex",
-                              alignItems: "center",
-                              gap: "6px",
-                              fontSize: "13px",
-                              color: "#cbd5f5",
-                              marginTop: "6px",
-                            }}
-                          >
-                            <MessageSquare size={14} />
-                            {issue.comments} comment
-                            {issue.comments !== 1 ? "s" : ""}
-                          </div>
-                        )}
-                      </div>
-
-                      {/* META */}
-                      <div
-                        style={{
-                          display: "flex",
-                          flexDirection: "column",
-                          alignItems: "flex-end",
-                          gap: "8px",
-                        }}
-                      >
-                        <span
-                          style={{
-                            background: priorityColors[issue.priority],
-                            color: "#fff",
-                            padding: "6px 12px",
-                            borderRadius: "999px",
-                            fontSize: "12px",
-                            fontWeight: 600,
-                          }}
-                        >
-                          {issue.priority}
-                        </span>
-
-                        <span
-                          style={{
-                            background: statusColors[issue.status],
-                            color: "#fff",
-                            padding: "6px 12px",
-                            borderRadius: "999px",
-                            fontSize: "12px",
-                          }}
-                        >
-                          {issue.status}
-                        </span>
-
-                        <span
+                      {issue.visibility === "public" && (
+                        <div
                           style={{
                             display: "flex",
                             alignItems: "center",
                             gap: "6px",
-                            fontSize: "12px",
+                            fontSize: "13px",
                             color: "#cbd5f5",
+                            marginTop: "6px",
                           }}
                         >
-                          {issue.visibility === "public" ? (
-                            <Eye size={14} />
-                          ) : (
-                            <EyeOff size={14} />
-                          )}
-                          {issue.visibility === "public" ? "Public" : "Private"}
-                        </span>
-                      </div>
+                          <MessageSquare size={14} />
+                          {issue.comments} comment
+                          {issue.comments !== 1 ? "s" : ""}
+                        </div>
+                      )}
                     </div>
-                  </Link>
-                );
-              })
-            )}
+
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "flex-end",
+                        gap: "8px",
+                      }}
+                    >
+                      <span
+                        style={{
+                          background: priorityColors[issue.priority],
+                          color: "#fff",
+                          padding: "6px 12px",
+                          borderRadius: "999px",
+                          fontSize: "12px",
+                          fontWeight: 600,
+                        }}
+                      >
+                        {issue.priority}
+                      </span>
+
+                      <span
+                        style={{
+                          background: statusColors[issue.status],
+                          color: "#fff",
+                          padding: "6px 12px",
+                          borderRadius: "999px",
+                          fontSize: "12px",
+                        }}
+                      >
+                        {issue.status}
+                      </span>
+
+                      <span
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: "6px",
+                          fontSize: "12px",
+                          color: "#cbd5f5",
+                        }}
+                      >
+                        {issue.visibility === "public" ? (
+                          <Eye size={14} />
+                        ) : (
+                          <EyeOff size={14} />
+                        )}
+                        {issue.visibility === "public" ? "Public" : "Private"}
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>
