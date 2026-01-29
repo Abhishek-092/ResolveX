@@ -9,3 +9,8 @@ app.use(express.json());
 app.use("/auth", authRoutes);
 
 module.exports = app;
+
+//ISSUE ROUTES
+const issueRoutes = require("./routes/issue.routes");
+
+app.use("/issues", issueRoutes);
