@@ -31,17 +31,8 @@ const AdminDashboard = () => {
       <section className="section">
         <div className="container" style={{ maxWidth: "1100px" }}>
 
-          {/* HERO HEADER */}
-          <div
-            style={{
-              marginBottom: "48px",
-              padding: "28px 32px",
-              borderRadius: "20px",
-              background:
-                "linear-gradient(135deg, #1e293b, #0f172a)",
-              border: "1px solid rgba(255,255,255,0.12)",
-            }}
-          >
+          {/* HEADER — NO WRAPPING BOX */}
+          <div style={{ marginBottom: "42px" }}>
             <h1 style={{ marginBottom: "10px", fontSize: "28px" }}>
               Management Dashboard
             </h1>
@@ -96,7 +87,6 @@ const AdminDashboard = () => {
               marginBottom: "52px",
             }}
           >
-            {/* MANAGE ISSUES */}
             <div
               className="glass"
               style={{
@@ -115,7 +105,6 @@ const AdminDashboard = () => {
               </Link>
             </div>
 
-            {/* ANNOUNCEMENTS */}
             <div
               className="glass"
               style={{
@@ -134,7 +123,6 @@ const AdminDashboard = () => {
               </Link>
             </div>
 
-            {/* ANALYTICS */}
             <div
               className="glass"
               style={{
@@ -194,6 +182,7 @@ const AdminDashboard = () => {
                 <Clock size={22} color="#fde68a" />
                 <h3>Operational Notes</h3>
               </div>
+
               <p style={{ marginTop: "14px", opacity: 0.95 }}>
                 Peak issue reporting observed between <strong>7 PM – 10 PM</strong>.
                 <br />
@@ -201,6 +190,7 @@ const AdminDashboard = () => {
               </p>
             </div>
           </div>
+
         </div>
       </section>
     </>
