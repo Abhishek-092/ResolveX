@@ -1,12 +1,12 @@
 const express = require("express");
-const { protect } = require("../middlewares/auth.middleware");
-const { requireAdmin } = require("../middlewares/role.middleware");
+const { protect } = require("../middlewares/auth.middleware.js");
+const { requireAdmin } = require("../middlewares/role.middleware.js");
 const {
   getAnnouncements,
   createAnnouncement,
   getAdminAnnouncements,
   deleteAnnouncement
-} = require("../controllers/announcement.controller");
+} = require("../controllers/announcement.controller.js");
 
 const router = express.Router();
 
