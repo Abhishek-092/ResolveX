@@ -35,6 +35,8 @@ const priorityStyles = {
   Emergency: "#ef4444",
 };
 
+const navigate = useNavigate();
+
 const ReportIssue = () => {
   const [form, setForm] = useState({
     category: "",
