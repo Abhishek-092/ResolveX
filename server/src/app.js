@@ -30,5 +30,11 @@ const lostFoundRoutes = require("./routes/lostFound.routes");
 
 app.use("/lost-found", lostFoundRoutes);
 
+//ANALYTICS ROUTES
+const analyticsRoutes = require("./routes/analytics.routes");
+
+app.use("/admin/analytics", analyticsRoutes);
+
+
 
 
