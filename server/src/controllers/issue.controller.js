@@ -1,11 +1,12 @@
-const Issue = require("../models/Issue.js");
-const Comment = require("../models/Comment.js");
+import Issue from "../models/Issue.js";
+import Comment from "../models/Comment.js";
+
 
 /**
  * POST /issues
  * Student reports an issue
  */
-exports.createIssue = async (req, res) => {
+const createIssue = async (req, res) => {
   try {
     const { title, description, category, priority, visibility } = req.body;
 
