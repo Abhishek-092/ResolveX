@@ -16,7 +16,7 @@ import {
 import Navbar from "../../components/common/Navbar";
 import BackButton from "../../components/common/BackButton";
 
-/* ---------------- MOCK DATA ---------------- */
+
 const [issues, setIssues] = useState([]);
 
 
