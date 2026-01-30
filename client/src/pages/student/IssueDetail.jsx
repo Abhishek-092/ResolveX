@@ -42,6 +42,10 @@ const IssueDetail = () => {
   const [issue, setIssue] = useState(null);
   const [comments, setComments] = useState([]);
 
+  // 🔽 ADDED (only this)
+  const [newComment, setNewComment] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+
   useEffect(() => {
     const fetchIssue = async () => {
       try {
@@ -59,6 +63,26 @@ const IssueDetail = () => {
 
     fetchIssue();
   }, [id]);
+
+  // 🔽 ADDED (only this)
+  const handleAddComment = async () => {
+    if (!newComment.trim()) return;
+
+    try {
+      setSubmitting(true);
+
+      const res = await api.post(`/issues/${id}/comments`, {
+        text: newComment,
+      });
+
+      setComments((prev) => [...prev, res.data]);
+      setNewComment("");
+    } catch (err) {
+      alert("Failed to add comment");
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   if (!issue) {
     return (
@@ -135,6 +159,39 @@ const IssueDetail = () => {
                     </small>
                   </div>
                 ))}
+
+                {/* 🔽 ADDED (only this) */}
+                <div style={{ marginTop: "14px" }}>
+                  <input
+                    type="text"
+                    placeholder="Add relevant information…"
+                    value={newComment}
+                    onChange={(e) => setNewComment(e.target.value)}
+                    style={{
+                      width: "100%",
+                      height: "42px",
+                      borderRadius: "10px",
+                      paddingLeft: "12px",
+                      fontSize: "14px",
+                    }}
+                  />
+
+                  <button
+                    onClick={handleAddComment}
+                    disabled={submitting}
+                    style={{
+                      marginTop: "8px",
+                      padding: "8px 14px",
+                      borderRadius: "8px",
+                      background: "#22d3ee",
+                      border: "none",
+                      cursor: "pointer",
+                      fontSize: "14px",
+                    }}
+                  >
+                    {submitting ? "Posting..." : "Post Comment"}
+                  </button>
+                </div>
               </>
             )}
           </div>
