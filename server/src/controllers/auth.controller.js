@@ -1,7 +1,7 @@
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const User = require("../models/User");
-const { JWT_SECRET, JWT_EXPIRES_IN } = require("../config/env");
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+import User from "../models/User.js";
+import { JWT_SECRET, JWT_EXPIRES_IN } from "../config/env.js";
 
 // helper
 const generateToken = (id) => {
@@ -12,7 +12,7 @@ const generateToken = (id) => {
  * POST /auth/register
  * STUDENT ONLY
  */
-exports.register = async (req, res) => {
+export const register = async (req, res) => {
   try {
     const { name, email, password, collegeName, location } = req.body;
 
@@ -33,7 +33,7 @@ exports.register = async (req, res) => {
       password: hashedPassword,
       collegeName,
       location,
-      role: "student" // FORCE student
+      role: "student", // FORCE student
     });
 
     const token = generateToken(user._id);
@@ -44,10 +44,11 @@ exports.register = async (req, res) => {
         id: user._id,
         name: user.name,
         email: user.email,
-        role: user.role
-      }
+        role: user.role,
+      },
     });
   } catch (err) {
+    console.error(err);
     res.status(500).json({ message: "Registration failed" });
   }
 };
@@ -55,7 +56,7 @@ exports.register = async (req, res) => {
 /**
  * POST /auth/login
  */
-exports.login = async (req, res) => {
+export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
 
@@ -63,7 +64,8 @@ exports.login = async (req, res) => {
       return res.status(400).json({ message: "Email and password required" });
     }
 
-    const user = await User.findOne({ email });
+    // 🔑 IMPORTANT: explicitly select password
+    const user = await User.findOne({ email }).select("+password");
     if (!user) {
       return res.status(401).json({ message: "Invalid credentials" });
     }
@@ -81,10 +83,11 @@ exports.login = async (req, res) => {
         id: user._id,
         name: user.name,
         email: user.email,
-        role: user.role
-      }
+        role: user.role,
+      },
     });
   } catch (err) {
+    console.error(err);
     res.status(500).json({ message: "Login failed" });
   }
 };
