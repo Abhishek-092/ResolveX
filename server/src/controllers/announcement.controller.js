@@ -1,4 +1,4 @@
-const Announcement = require("../models/Announcement");
+const Announcement = require("../models/Announcement.js");
 
 /**
  * POST /announcements
