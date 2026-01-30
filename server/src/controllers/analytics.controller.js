@@ -1,65 +1,60 @@
-const Issue = require("../models/Issue.js");
+import Issue from "../models/Issue.js";
 
 /**
  * GET /admin/analytics/overview
+ * Admin-only analytics
  */
-exports.getOverview = async (req, res) => {
+const getAnalyticsOverview = async (req, res) => {
   try {
+    // Total issues
     const totalIssues = await Issue.countDocuments();
 
+    // Status counts
     const statusCounts = await Issue.aggregate([
-      { $group: { _id: "$status", count: { $sum: 1 } } }
+      {
+        $group: {
+          _id: "$status",
+          count: { $sum: 1 }
+        }
+      }
     ]);
 
+    // Category frequency
     const categoryCounts = await Issue.aggregate([
-      { $group: { _id: "$category", count: { $sum: 1 } } }
+      {
+        $group: {
+          _id: "$category",
+          count: { $sum: 1 }
+        }
+      }
     ]);
 
+    // Priority breakdown
     const priorityCounts = await Issue.aggregate([
-      { $group: { _id: "$priority", count: { $sum: 1 } } }
+      {
+        $group: {
+          _id: "$priority",
+          count: { $sum: 1 }
+        }
+      }
     ]);
 
-    const emergencyCount = await Issue.countDocuments({
+    // Emergency trend (simple)
+    const emergencyIssues = await Issue.countDocuments({
       priority: "emergency"
     });
-
-    // Avg resolution time (reported → resolved)
-    const resolvedIssues = await Issue.find({
-      status: { $in: ["resolved", "closed"] }
-    });
-
-    let totalResolutionTime = 0;
-    let resolvedCount = 0;
-
-    resolvedIssues.forEach((issue) => {
-      const reported = issue.statusHistory.find(
-        (s) => s.status === "reported"
-      );
-      const resolved = issue.statusHistory.find(
-        (s) => s.status === "resolved"
-      );
-
-      if (reported && resolved) {
-        totalResolutionTime +=
-          new Date(resolved.timestamp) - new Date(reported.timestamp);
-        resolvedCount++;
-      }
-    });
-
-    const avgResolutionTime =
-      resolvedCount === 0
-        ? 0
-        : Math.round(totalResolutionTime / resolvedCount / 1000 / 60); // minutes
 
     res.json({
       totalIssues,
       statusCounts,
       categoryCounts,
       priorityCounts,
-      emergencyCount,
-      avgResolutionTimeMinutes: avgResolutionTime
+      emergencyIssues
     });
   } catch (err) {
-    res.status(500).json({ message: "Analytics failed" });
+    console.error(err);
+    res.status(500).json({ message: "Failed to load analytics" });
   }
 };
+
+export { getAnalyticsOverview };
