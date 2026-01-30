@@ -1,4 +1,4 @@
-const LostItem = require("../models/LostItem");
+const LostItem = require("../models/LostItem.js");
 
 /**
  * POST /lost-found/lost
