@@ -1,7 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import { StudentRoute, AdminRoute } from "./ProtectedRoutes";
 
-
 // Public
 import Landing from "./pages/public/Landing";
 
@@ -20,6 +19,8 @@ import ReportLost from "./pages/student/ReportLost";
 import ReportFound from "./pages/student/ReportFound";
 import IssuesFeed from "./pages/student/IssuesFeed";
 import MyAccount from "./pages/student/MyAccount";
+
+// Admin
 import AdminDashboard from "./pages/admin/Dashboard";
 import ManageIssues from "./pages/admin/ManageIssues";
 import IssueDetailAdmin from "./pages/admin/IssueDetail";
@@ -27,7 +28,6 @@ import AdminAnnouncements from "./pages/admin/Announcements";
 import Analytics from "./pages/admin/Analytics";
 import LostAndFoundAdmin from "./pages/admin/LostAndFoundAdmin";
 import AddAnnouncement from "./pages/admin/AddAnnouncement";
-
 
 const AppRoutes = () => {
   return (
@@ -39,26 +39,160 @@ const AppRoutes = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
 
-      {/* Student */}
-      <Route path="/student/dashboard" element={<StudentDashboard />} />
-      <Route path="/student/report" element={<ReportIssue />} />
-      <Route path="/student/issues" element={<MyIssues />} />
-      <Route path="/student/issues/:id" element={<IssueDetail />} />
-      <Route path="/student/announcements" element={<StudentAnnouncements />} />
-      <Route path="/student/lost-found" element={<LostAndFound />} />
-      <Route path="/student/lost-found/report-lost" element={<ReportLost />} />
-      <Route path="/student/lost-found/report-found" element={<ReportFound />} />
-  ️    <Route path="student/issues/feed" element={<IssuesFeed />} />
-      <Route path="/student/account" element={<MyAccount />} />
+      {/* ================= STUDENT ROUTES ================= */}
+      <Route
+        path="/student/dashboard"
+        element={
+          <StudentRoute>
+            <StudentDashboard />
+          </StudentRoute>
+        }
+      />
 
-      {/* Admin */}
-      <Route path="/admin/dashboard" element={<AdminDashboard />} />
-      <Route path="/admin/manage-issues" element={<ManageIssues />} />
-      <Route path="/admin/manage-issues/:id" element={<IssueDetailAdmin />} />
-      <Route path="/admin/announcements" element={<AdminAnnouncements />} />
-      <Route path="/admin/analytics" element={<Analytics />} />
-      <Route path="/admin/lost-found" element={<LostAndFoundAdmin />} />
-      <Route path="/admin/announcements/add" element={<AddAnnouncement />} />
+      <Route
+        path="/student/report"
+        element={
+          <StudentRoute>
+            <ReportIssue />
+          </StudentRoute>
+        }
+      />
+
+      <Route
+        path="/student/issues"
+        element={
+          <StudentRoute>
+            <MyIssues />
+          </StudentRoute>
+        }
+      />
+
+      <Route
+        path="/student/issues/:id"
+        element={
+          <StudentRoute>
+            <IssueDetail />
+          </StudentRoute>
+        }
+      />
+
+      <Route
+        path="/student/issues/feed"
+        element={
+          <StudentRoute>
+            <IssuesFeed />
+          </StudentRoute>
+        }
+      />
+
+      <Route
+        path="/student/announcements"
+        element={
+          <StudentRoute>
+            <StudentAnnouncements />
+          </StudentRoute>
+        }
+      />
+
+      <Route
+        path="/student/lost-found"
+        element={
+          <StudentRoute>
+            <LostAndFound />
+          </StudentRoute>
+        }
+      />
+
+      <Route
+        path="/student/lost-found/report-lost"
+        element={
+          <StudentRoute>
+            <ReportLost />
+          </StudentRoute>
+        }
+      />
+
+      <Route
+        path="/student/lost-found/report-found"
+        element={
+          <StudentRoute>
+            <ReportFound />
+          </StudentRoute>
+        }
+      />
+
+      <Route
+        path="/student/account"
+        element={
+          <StudentRoute>
+            <MyAccount />
+          </StudentRoute>
+        }
+      />
+
+      {/* ================= ADMIN ROUTES ================= */}
+      <Route
+        path="/admin/dashboard"
+        element={
+          <AdminRoute>
+            <AdminDashboard />
+          </AdminRoute>
+        }
+      />
+
+      <Route
+        path="/admin/manage-issues"
+        element={
+          <AdminRoute>
+            <ManageIssues />
+          </AdminRoute>
+        }
+      />
+
+      <Route
+        path="/admin/manage-issues/:id"
+        element={
+          <AdminRoute>
+            <IssueDetailAdmin />
+          </AdminRoute>
+        }
+      />
+
+      <Route
+        path="/admin/announcements"
+        element={
+          <AdminRoute>
+            <AdminAnnouncements />
+          </AdminRoute>
+        }
+      />
+
+      <Route
+        path="/admin/announcements/add"
+        element={
+          <AdminRoute>
+            <AddAnnouncement />
+          </AdminRoute>
+        }
+      />
+
+      <Route
+        path="/admin/analytics"
+        element={
+          <AdminRoute>
+            <Analytics />
+          </AdminRoute>
+        }
+      />
+
+      <Route
+        path="/admin/lost-found"
+        element={
+          <AdminRoute>
+            <LostAndFoundAdmin />
+          </AdminRoute>
+        }
+      />
     </Routes>
   );
 };
