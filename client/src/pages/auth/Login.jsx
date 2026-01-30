@@ -16,36 +16,41 @@ const Login = () => {
   const isValidEmail = (value) =>
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setError("");
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+  setError("");
 
-    if (!email || !password) {
-      setError("Invalid email or password");
-      return;
-    }
+  if (!email || !password) {
+    setError("Invalid email or password");
+    return;
+  }
 
-    if (!isValidEmail(email)) {
-      setError("Invalid email or password");
-      return;
-    }
+  if (!isValidEmail(email)) {
+    setError("Invalid email or password");
+    return;
+  }
 
+  try {
     setLoading(true);
 
-    // 🔒 FRONTEND-ONLY MOCK LOGIN
-    setTimeout(() => {
-      setLoading(false);
+    const data = await loginUser({ email, password });
 
-      // Mock role detection
-      const role = email.includes("admin") ? "management" : "student";
+    // store auth
+    localStorage.setItem("token", data.token);
+    localStorage.setItem("user", JSON.stringify(data.user));
 
-      if (role === "student") {
-        navigate("/student/dashboard");
-      } else {
-        navigate("/admin/dashboard");
-      }
-    }, 1200);
-  };
+    if (data.user.role === "admin") {
+      navigate("/admin/dashboard");
+    } else {
+      navigate("/student/dashboard");
+    }
+  } catch (err) {
+    setError(err.response?.data?.message || "Login failed");
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   return (
     <section className="section">
