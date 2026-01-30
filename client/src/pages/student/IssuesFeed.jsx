@@ -17,45 +17,8 @@ import Navbar from "../../components/common/Navbar";
 import BackButton from "../../components/common/BackButton";
 
 /* ---------------- MOCK DATA ---------------- */
+const [issues, setIssues] = useState([]);
 
-const issues = [
-  {
-    id: 1,
-    category: "Plumbing",
-    description: "Water leakage from the washroom tap since last night.",
-    priority: "High",
-    status: "In Progress",
-    date: "12 Sep 2025",
-    reporter: "Rahul",
-    room: "214",
-    comments: [
-      {
-        id: 1,
-        name: "Ananya",
-        room: "219",
-        text: "Same issue in my room as well.",
-        time: "2 hours ago",
-      },
-      {
-        id: 2,
-        name: "Karan",
-        text: "Maintenance team checked it today.",
-        time: "30 minutes ago",
-      },
-    ],
-  },
-  {
-    id: 2,
-    category: "Internet",
-    description: "WiFi disconnects frequently after midnight.",
-    priority: "Medium",
-    status: "Reported",
-    date: "11 Sep 2025",
-    reporter: "Sneha",
-    room: "301",
-    comments: [],
-  },
-];
 
 /* ---------------- CONFIG ---------------- */
 
