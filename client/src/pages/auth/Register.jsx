@@ -76,8 +76,8 @@ const Register = () => {
     const data = await registerUser(payload);
 
     // store auth
-    localStorage.setItem("token", data.token);
-    localStorage.setItem("user", JSON.stringify(data.user));
+    login(data);
+
 
     navigate("/student/dashboard");
   } catch (err) {
