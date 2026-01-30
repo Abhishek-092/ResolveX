@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { useEffect } from "react";
+import api from "../../services/api";
+
 import {
   Droplets,
   Zap,
