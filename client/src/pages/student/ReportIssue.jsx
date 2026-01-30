@@ -50,11 +50,30 @@ const ReportIssue = () => {
   // mocked user location (later from profile)
   const userRoom = "Hostel A · Room 204";
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Submitted issue:", form);
-    alert("Issue submitted (mock)");
-  };
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  if (!form.category || !form.description) {
+    alert("Please select a category and add description");
+    return;
+  }
+
+  try {
+    const payload = {
+      category: form.category,
+      priority: form.priority.toLowerCase(), // backend expects lowercase
+      description: form.description,
+      visibility: form.visibility,
+    };
+
+    await api.post("/issues", payload);
+
+    navigate("/student/issues");
+  } catch (err) {
+    alert(err.response?.data?.message || "Failed to submit issue");
+  }
+};
+
 
   return (
     <>
