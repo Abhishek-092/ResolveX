@@ -1,5 +1,5 @@
-const Issue = require("../models/Issue");
-const Comment = require("../models/Comment");
+const Issue = require("../models/Issue.js");
+const Comment = require("../models/Comment.js");
 
 /**
  * POST /issues
