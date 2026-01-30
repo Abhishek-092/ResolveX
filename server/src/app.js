@@ -1,40 +1,35 @@
-const express = require("express");
-const authRoutes = require("./routes/auth.routes");
+import express from "express";
+
+// Routes
+import authRoutes from "./routes/auth.routes.js";
+import issueRoutes from "./routes/issue.routes.js";
+import adminRoutes from "./routes/admin.routes.js";
+import announcementRoutes from "./routes/announcement.routes.js";
+import lostFoundRoutes from "./routes/lostFound.routes.js";
+import analyticsRoutes from "./routes/analytics.routes.js";
 
 const app = express();
 
+/* ---------------- MIDDLEWARE ---------------- */
 app.use(express.json());
 
-// AUTH ROUTES
+/* ---------------- ROUTES ---------------- */
+
+// Auth
 app.use("/auth", authRoutes);
 
-module.exports = app;
-
-//ISSUE ROUTES
-const issueRoutes = require("./routes/issue.routes");
-
+// Student issues
 app.use("/issues", issueRoutes);
 
-// ADMIN ROUTES
-const adminRoutes = require("./routes/admin.routes");
-
-app.use("/admin", adminRoutes);
-
-// ANNOUNCEMENT ROUTES
-const announcementRoutes = require("./routes/announcement.routes");
-
+// Announcements (student + admin read)
 app.use("/announcements", announcementRoutes);
 
-//LOST AND FOUND ROUTES
-const lostFoundRoutes = require("./routes/lostFound.routes");
-
+// Lost & Found
 app.use("/lost-found", lostFoundRoutes);
 
-//ANALYTICS ROUTES
-const analyticsRoutes = require("./routes/analytics.routes");
-
+// Admin
+app.use("/admin", adminRoutes);
 app.use("/admin/analytics", analyticsRoutes);
 
-
-
-
+/* ---------------- EXPORT ---------------- */
+export default app;
