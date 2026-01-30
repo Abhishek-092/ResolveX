@@ -1,8 +1,8 @@
-const jwt = require("jsonwebtoken");
-const User = require("../models/User");
-const { JWT_SECRET } = require("../config/env");
+import jwt from "jsonwebtoken";
+import User from "../models/User.js";
+import { JWT_SECRET } from "../config/env.js";
 
-exports.protect = async (req, res, next) => {
+export const protect = async (req, res, next) => {
   try {
     const authHeader = req.headers.authorization;
 
@@ -18,7 +18,7 @@ exports.protect = async (req, res, next) => {
       return res.status(401).json({ message: "User not found" });
     }
 
-    req.user = user; // contains role from DB
+    req.user = user; // role + profile from DB
     next();
   } catch (err) {
     return res.status(401).json({ message: "Invalid token" });
