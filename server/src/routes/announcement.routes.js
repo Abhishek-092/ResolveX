@@ -1,26 +1,25 @@
 const express = require("express");
 const { protect } = require("../middlewares/auth.middleware");
 const { requireAdmin } = require("../middlewares/role.middleware");
-
 const {
+  getAnnouncements,
   createAnnouncement,
-  getAllAnnouncements,
-  deleteAnnouncement,
-  getStudentAnnouncements
+  getAdminAnnouncements,
+  deleteAnnouncement
 } = require("../controllers/announcement.controller");
 
 const router = express.Router();
 
 /**
- * STUDENT
+ * Student: view announcements
  */
-router.get("/", protect, getStudentAnnouncements);
+router.get("/", protect, getAnnouncements);
 
 /**
- * ADMIN
+ * Admin routes
  */
-router.post("/", protect, requireAdmin, createAnnouncement);
-router.get("/admin", protect, requireAdmin, getAllAnnouncements);
-router.delete("/:id", protect, requireAdmin, deleteAnnouncement);
+router.post("/admin", protect, requireAdmin, createAnnouncement);
+router.get("/admin", protect, requireAdmin, getAdminAnnouncements);
+router.delete("/admin/:id", protect, requireAdmin, deleteAnnouncement);
 
 module.exports = router;
