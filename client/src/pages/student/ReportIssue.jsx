@@ -1,5 +1,5 @@
 import { useState } from "react";
-import api from "../../services/api";
+import api from "../../services/api.js";
 import { useNavigate } from "react-router-dom";
 
 import {
@@ -16,8 +16,8 @@ import {
   AlertTriangle,
 } from "lucide-react";
 
-import Navbar from "../../components/common/Navbar";
-import BackButton from "../../components/common/BackButton";
+import Navbar from "../../components/common/navbar.jsx";
+import BackButton from "../../components/common/BackButton.jsx";
 
 const categories = [
   { label: "Plumbing", icon: Droplets, color: "#38bdf8" },
