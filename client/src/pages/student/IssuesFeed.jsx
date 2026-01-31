@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useEffect } from "react";
-import api from "../../services/api";
+import api from "../../services/api.js";
 
 import {
   Droplets,
@@ -13,8 +13,8 @@ import {
   ChevronDown,
 } from "lucide-react";
 
-import Navbar from "../../components/common/Navbar";
-import BackButton from "../../components/common/BackButton";
+import Navbar from "../../components/common/Navbar.jsx";
+import BackButton from "../../components/common/BackButton.jsx";
 
 
 const [issues, setIssues] = useState([]);
