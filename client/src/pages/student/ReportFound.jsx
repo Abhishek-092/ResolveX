@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Navbar from "../../components/common/navbar.jsx";
+import Navbar from "../../components/common/Navbar.jsx";
 import BackButton from "../../components/common/BackButton.jsx";
 import SubmitPopup from "../../components/common/SubmitPopup.jsx";
 

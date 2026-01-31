@@ -16,7 +16,7 @@ import {
   AlertTriangle,
 } from "lucide-react";
 
-import Navbar from "../../components/common/navbar.jsx";
+import Navbar from "../../components/common/Navbar.jsx";
 import BackButton from "../../components/common/BackButton.jsx";
 
 const categories = [
