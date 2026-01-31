@@ -2,32 +2,32 @@ import { Routes, Route } from "react-router-dom";
 import { StudentRoute, AdminRoute } from "./ProtectedRoutes";
 
 // Public
-import Landing from "./pages/public/Landing";
+import Landing from "./pages/public/Landing.jsx";
 
 // Auth
-import Login from "./pages/auth/Login";
-import Register from "./pages/auth/Register";
+import Login from "./pages/auth/Login.jsx";
+import Register from "./pages/auth/Register.jsx";
 
 // Student
-import StudentDashboard from "./pages/student/Dashboard";
-import ReportIssue from "./pages/student/ReportIssue";
-import MyIssues from "./pages/student/MyIssues";
-import IssueDetail from "./pages/student/IssueDetail";
-import StudentAnnouncements from "./pages/student/Announcements";
-import LostAndFound from "./pages/student/LostAndFound";
-import ReportLost from "./pages/student/ReportLost";
-import ReportFound from "./pages/student/ReportFound";
-import IssuesFeed from "./pages/student/IssuesFeed";
-import MyAccount from "./pages/student/MyAccount";
+import StudentDashboard from "./pages/student/Dashboard.jsx";
+import ReportIssue from "./pages/student/ReportIssue.jsx";
+import MyIssues from "./pages/student/MyIssues.jsx";
+import IssueDetail from "./pages/student/IssueDetail.jsx";
+import StudentAnnouncements from "./pages/student/Announcements.jsx";
+import LostAndFound from "./pages/student/LostAndFound.jsx";
+import ReportLost from "./pages/student/ReportLost.jsx";
+import ReportFound from "./pages/student/ReportFound.jsx";
+import IssuesFeed from "./pages/student/IssuesFeed.jsx";
+import MyAccount from "./pages/student/MyAccount.jsx";
 
 // Admin
-import AdminDashboard from "./pages/admin/Dashboard";
-import ManageIssues from "./pages/admin/ManageIssues";
-import IssueDetailAdmin from "./pages/admin/IssueDetail";
-import AdminAnnouncements from "./pages/admin/Announcements";
-import Analytics from "./pages/admin/Analytics";
-import LostAndFoundAdmin from "./pages/admin/LostAndFoundAdmin";
-import AddAnnouncement from "./pages/admin/AddAnnouncement";
+import AdminDashboard from "./pages/admin/Dashboard.jsx";
+import ManageIssues from "./pages/admin/ManageIssues.jsx";
+import IssueDetailAdmin from "./pages/admin/IssueDetail.jsx";
+import AdminAnnouncements from "./pages/admin/Announcements.jsx";
+import Analytics from "./pages/admin/Analytics.jsx";
+import LostAndFoundAdmin from "./pages/admin/LostAndFoundAdmin.jsx";
+import AddAnnouncement from "./pages/admin/AddAnnouncement.jsx";
 
 const AppRoutes = () => {
   return (
