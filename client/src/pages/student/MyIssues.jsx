@@ -13,9 +13,9 @@ import {
   Filter,
 } from "lucide-react";
 
-import Navbar from "../../components/common/Navbar";
-import BackButton from "../../components/common/BackButton";
-import api from "../../services/api";
+import Navbar from "../../components/common/Navbar.jsx";
+import BackButton from "../../components/common/BackButton.jsx";
+import api from "../../services/api.js";
 
 /* COLORS — UNCHANGED */
 const categoryColors = {
