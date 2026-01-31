@@ -8,7 +8,7 @@ import {
   Layers,
 } from "lucide-react";
 
-import Navbar from "../../components/common/Navbar";
+import Navbar from "../../components/common/Navbar.jsx";
 
 const actionButtonStyle = {
   marginTop: "14px",
