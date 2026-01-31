@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import Navbar from "../../components/common/Navbar";
-import BackButton from "../../components/common/BackButton";
+import Navbar from "../../components/common/Navbar.jsx";
+import BackButton from "../../components/common/BackButton.jsx";
 import { Megaphone, Calendar } from "lucide-react";
-import { getStudentAnnouncements } from "../../services/announcement.service";
+import { getStudentAnnouncements } from "../../services/announcement.service.js";
 
 const StudentAnnouncements = () => {
   const [announcements, setAnnouncements] = useState([]);
