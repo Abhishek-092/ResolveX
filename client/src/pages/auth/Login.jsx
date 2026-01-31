@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Mail, Lock } from "lucide-react";
 import logoPrimary from "../../assets/images/logo-primary.svg";
-import { loginUser } from "../../services/auth.service";
+import { loginUser } from "../../services/auth.service.js";
 
 
 const Login = () => {
