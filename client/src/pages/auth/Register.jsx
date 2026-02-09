@@ -1,13 +1,9 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { User, Mail, Lock, Building2, DoorOpen } from "lucide-react";
 import logoPrimary from "../../assets/images/logo-primary.svg";
-import { useNavigate } from "react-router-dom";
 import { registerUser } from "../../services/auth.service.js";
-
-
-const navigate = useNavigate();
-
+import { useAuth } from "../../context/AuthContext.jsx";
 
 const hostelOptions = [
   "Hostel A",
@@ -19,6 +15,8 @@ const hostelOptions = [
 ];
 
 const Register = () => {
+  const navigate = useNavigate();
+  const { login } = useAuth();
   const [form, setForm] = useState({
     fullName: "",
     email: "",
@@ -38,52 +36,51 @@ const Register = () => {
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/.test(pwd);
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
-  setError("");
+    e.preventDefault();
+    setError("");
 
-  for (const key in form) {
-    if (!form[key]) {
-      setError("All fields are required");
+    for (const key in form) {
+      if (!form[key]) {
+        setError("All fields are required");
+        return;
+      }
+    }
+
+    if (!isPasswordValid(form.password)) {
+      setError(
+        "Password must be at least 8 characters and include uppercase, lowercase, and a number"
+      );
       return;
     }
-  }
 
-  if (!isPasswordValid(form.password)) {
-    setError(
-      "Password must be at least 8 characters and include uppercase, lowercase, and a number"
-    );
-    return;
-  }
+    if (form.password !== form.confirmPassword) {
+      setError("Passwords do not match");
+      return;
+    }
 
-  if (form.password !== form.confirmPassword) {
-    setError("Passwords do not match");
-    return;
-  }
+    try {
+      const payload = {
+        name: form.fullName,
+        email: form.email,
+        password: form.password,
+        collegeName: "Your College Name",
+        location: {
+          campus: "Main Campus",
+          block: form.hostel,
+          room: form.roomNo,
+        },
+      };
 
-  try {
-    const payload = {
-      name: form.fullName,
-      email: form.email,
-      password: form.password,
-      collegeName: "Your College Name",
-      location: {
-        campus: "Main Campus",
-        block: form.hostel,
-        room: form.roomNo,
-      },
-    };
+      const data = await registerUser(payload);
 
-    const data = await registerUser(payload);
+      // store auth
+      login(data);
 
-    // store auth
-    login(data);
-
-
-    navigate("/student/dashboard");
-  } catch (err) {
-    setError(err.response?.data?.message || "Registration failed");
-  }
-};
+      navigate("/student/dashboard");
+    } catch (err) {
+      setError(err.response?.data?.message || "Registration failed");
+    }
+  };
 
 
   return (

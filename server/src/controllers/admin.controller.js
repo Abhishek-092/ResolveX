@@ -20,14 +20,19 @@ const getAllIssues = async (req, res) => {
  */
 const assignIssue = async (req, res) => {
   try {
-    const { assignedTo } = req.body;
+    const { assignedTo, assignee } = req.body;
+    const resolvedAssignee = assignedTo || assignee;
+
+    if (!resolvedAssignee) {
+      return res.status(400).json({ message: "Assignee is required" });
+    }
 
     const issue = await Issue.findById(req.params.id);
     if (!issue) {
       return res.status(404).json({ message: "Issue not found" });
     }
 
-    issue.assignedTo = assignedTo;
+    issue.assignedTo = resolvedAssignee;
     issue.status = "assigned";
     issue.statusHistory.push({
       status: "assigned",

@@ -3,10 +3,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { Mail, Lock } from "lucide-react";
 import logoPrimary from "../../assets/images/logo-primary.svg";
 import { loginUser } from "../../services/auth.service.js";
+import { useAuth } from "../../context/AuthContext.jsx";
 
 
 const Login = () => {
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -17,39 +19,38 @@ const Login = () => {
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
-  setError("");
+    e.preventDefault();
+    setError("");
 
-  if (!email || !password) {
-    setError("Invalid email or password");
-    return;
-  }
-
-  if (!isValidEmail(email)) {
-    setError("Invalid email or password");
-    return;
-  }
-
-  try {
-    setLoading(true);
-
-    const data = await loginUser({ email, password });
-
-    // store auth
-  login(data);
-
-
-    if (data.user.role === "admin") {
-      navigate("/admin/dashboard");
-    } else {
-      navigate("/student/dashboard");
+    if (!email || !password) {
+      setError("Invalid email or password");
+      return;
     }
-  } catch (err) {
-    setError(err.response?.data?.message || "Login failed");
-  } finally {
-    setLoading(false);
-  }
-};
+
+    if (!isValidEmail(email)) {
+      setError("Invalid email or password");
+      return;
+    }
+
+    try {
+      setLoading(true);
+
+      const data = await loginUser({ email, password });
+
+      // store auth
+      login(data);
+
+      if (data.user.role === "admin") {
+        navigate("/admin/dashboard");
+      } else {
+        navigate("/student/dashboard");
+      }
+    } catch (err) {
+      setError(err.response?.data?.message || "Login failed");
+    } finally {
+      setLoading(false);
+    }
+  };
 
 
   return (
