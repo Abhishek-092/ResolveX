@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 
 // Routes
 import authRoutes from "./routes/auth.routes.js";
@@ -11,6 +12,7 @@ import analyticsRoutes from "./routes/analytics.routes.js";
 const app = express();
 
 /* ---------------- MIDDLEWARE ---------------- */
+app.use(cors());
 app.use(express.json());
 
 /* ---------------- ROUTES ---------------- */
