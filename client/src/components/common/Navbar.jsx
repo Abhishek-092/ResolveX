@@ -1,8 +1,20 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { LogOut, UserCircle } from "lucide-react";
 import logoPrimary from "../../assets/images/logo-primary.svg";
+import { useAuth } from "../../context/AuthContext";
 
 const Navbar = () => {
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
+
+  const dashboardLink = user?.role === "admin" ? "/admin/dashboard" : "/student/dashboard";
+  const accountLink = user?.role === "admin" ? "/admin/dashboard" : "/student/account"; // Or generic account if exists
+
   return (
     <header
       style={{
