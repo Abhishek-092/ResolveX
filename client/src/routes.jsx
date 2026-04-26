@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { StudentRoute, AdminRoute } from "./ProtectedRoutes";
 
 // Public
@@ -33,9 +33,11 @@ const AppRoutes = () => {
   return (
     <Routes>
       {/* Public */}
-      <Route path="/" element={<Landing />} />
+      <Route path="/landing" element={<Landing />} />
 
       {/* Auth */}
+      <Route path="/" element={<Login />} />
+      <Route index element={<Login />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
 
@@ -193,6 +195,7 @@ const AppRoutes = () => {
           </AdminRoute>
         }
       />
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
 };
