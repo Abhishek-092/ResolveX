@@ -37,7 +37,7 @@ const Navbar = () => {
       >
         {/* Logo */}
         <Link
-          to="/student/dashboard"
+          to={dashboardLink}
           style={{
             display: "flex",
             alignItems: "center",
@@ -72,7 +72,7 @@ const Navbar = () => {
         >
           {/* My Account */}
           <Link
-            to="/student/account"
+            to={accountLink}
             style={{
               display: "flex",
               alignItems: "center",
@@ -86,6 +86,7 @@ const Navbar = () => {
 
           {/* Logout */}
           <button
+            onClick={handleLogout}
             style={{
               display: "flex",
               alignItems: "center",
