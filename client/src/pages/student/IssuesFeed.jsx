@@ -17,21 +17,6 @@ import Navbar from "../../components/common/Navbar.jsx";
 import BackButton from "../../components/common/BackButton.jsx";
 
 
-const [issues, setIssues] = useState([]);
-useEffect(() => {
-  const fetchIssues = async () => {
-    try {
-      const res = await api.get("/issues/public");
-      setIssues(res.data);
-    } catch (err) {
-      console.error("Failed to fetch public issues");
-    }
-  };
-
-  fetchIssues();
-}, []);
-
-
 
 /* ---------------- CONFIG ---------------- */
 
@@ -71,6 +56,20 @@ const statusColor = {
 
 const IssuesFeed = () => {
   const [openIssue, setOpenIssue] = useState(null);
+  const [issues, setIssues] = useState([]);
+
+  useEffect(() => {
+    const fetchIssues = async () => {
+      try {
+        const res = await api.get("/issues/public");
+        setIssues(res.data);
+      } catch (err) {
+        console.error("Failed to fetch public issues");
+      }
+    };
+
+    fetchIssues();
+  }, []);
 
   return (
     <>
